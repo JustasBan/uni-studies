@@ -2,6 +2,18 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.zip.ZipOutputStream;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.zip.ZipEntry;
 
 public class Commands {
 
@@ -222,7 +234,6 @@ public class Commands {
 
         while (true) {
             res = bufferedReader.readLine();
-            System.out.println(res);
             String find = "OK Success";
             if (res.indexOf(find) > 0) {
                 break;
@@ -235,15 +246,71 @@ public class Commands {
         fileOutputStream.close();
     }
 
+    // function to delete subdirectories and files
+    public static void deleteDirectory(File file)
+    {
+        // store all the paths of files and folders present
+        // inside directory
+        for (File subfile : file.listFiles()) {
+  
+            // if it is a subfolder,e.g Rohan and Ritik,
+            // recursiley call function to empty subfolder
+            if (subfile.isDirectory()) {
+                deleteDirectory(subfile);
+            }
+  
+            // delete files and empty subfolders
+            subfile.delete();
+        }
+
+        file.delete();
+    }
+
+    private static void zipFolderStructure(String sourceFolder, String zipFolder){
+        // Creating a ZipOutputStream by wrapping a FileOutputStream
+        try (FileOutputStream fos = new FileOutputStream(zipFolder); 
+             ZipOutputStream zos = new ZipOutputStream(fos)) {
+          Path sourcePath = Paths.get(sourceFolder);
+          // Walk the tree structure using WalkFileTree method
+          Files.walkFileTree(sourcePath, new SimpleFileVisitor<Path>(){
+            @Override
+            // Before visiting the directory create the directory in zip archive
+            public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attrs) throws IOException {
+              // Don't create dir for root folder as it is already created with .zip name 
+              if(!sourcePath.equals(dir)){
+                System.out.println("Directory- " + dir);
+                zos.putNextEntry(new ZipEntry(sourcePath.relativize(dir).toString() + "/"));                  
+                zos.closeEntry();    
+              }
+              return FileVisitResult.CONTINUE;
+            }
+            @Override
+            // For each visited file add it to zip entry
+            public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
+              System.out.println("File Name- " + sourcePath.relativize(file).toString());
+              zos.putNextEntry(new ZipEntry(sourcePath.relativize(file).toString()));
+              Files.copy(file, zos);
+              zos.closeEntry();
+              return FileVisitResult.CONTINUE;
+            }});
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+
     private String FormMessage(String id, int which) {
         return ". FETCH " + id + " BODY.PEEK[" + Integer.toString(which) + "]";
     }
 
     public void FetchAttachments(String id) throws IOException {
         int i = 2;
+        String names = "";
         for (String name : FetchAttachmentsNames(id)) {
+            names += name + "__";
             String message = FormMessage(id, i);
             String fileName = name;
+
             new File("files/"+id+"/").mkdirs();
             File file = new File("files/"+id+"/" + fileName);
             OutputStream fileOutputStream = new FileOutputStream(file);
@@ -266,6 +333,12 @@ public class Commands {
             fileOutputStream.close();
             i++;
         }
+
+        names += "priedai.zip";
+        zipFolderStructure("files/"+id, "files/" + names);
+
+        File file = new File("files/"+id);
+        deleteDirectory(file);
     }
 
     public void Search(String body) throws IOException {
