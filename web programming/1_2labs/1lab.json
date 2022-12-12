@@ -1,0 +1,259 @@
+{
+  "computer": {
+    "hardware": {
+      "group": [
+        {
+          "place": "external",
+          "component": [
+            {
+              "title": "Keyboard",
+              "origin": "China",
+              "manufacturer": "Razer",
+              "model": "Ornata",
+              "serialNo": "6516168238A",
+              "warranty": "2024-12-12T00:00:00.00",
+              "connection": "USB3.0",
+              "powerConsumption": {
+                "@units": "Watts",
+                "value": 1.15
+              },
+              "incidents": 20
+            },
+            {
+              "title": "Mouse",
+              "origin": "China",
+              "manufacturer": "Razer",
+              "model": "BasiliskV3",
+              "serialNo": "6516168238A",
+              "warranty": "2024-12-12T00:00:00.00",
+              "connection": "USB3.0",
+              "powerConsumption": {
+                "@units": "Watts",
+                "value": 0.5
+              },
+              "incidents": 11
+            },
+            {
+              "title": "Monitor",
+              "origin": "Korea",
+              "manufacturer": "LG",
+              "model": "L558",
+              "serialNo": "3514531A",
+              "warranty": "2022-12-12T00:00:00.00",
+              "connection": "USB-C",
+              "powerConsumption": {
+                "@units": "Watts",
+                "value": 20
+              },
+              "incidents": 0
+            }
+          ]
+        },
+        {
+          "place": "internal",
+          "component": [
+            {
+              "title": "RAM",
+              "origin": "Taiwan",
+              "manufacturer": "Corsair",
+              "model": "P588",
+              "serialNo": "A8721228327",
+              "warranty": "2023-12-12T00:00:00.00",
+              "connection": "DIMM",
+              "powerConsumption": {
+                "@units": "Watts",
+                "value": 15.3
+              },
+              "incidents": 0
+            },
+            {
+              "title": "Motherboard",
+              "origin": "China",
+              "manufacturer": "Asus",
+              "model": "S888",
+              "serialNo": "A8721228327",
+              "warranty": "2023-12-02T00:00:00.00",
+              "connection": null,
+              "powerConsumption": {
+                "@units": "Watts",
+                "value": 50.1
+              },
+              "incidents": 1
+            },
+            {
+              "title": "CPU",
+              "origin": "USA",
+              "manufacturer": "AMD",
+              "model": "Threadripper3000",
+              "serialNo": "A8721228327",
+              "warranty": "2022-12-12T00:00:00.00",
+              "connection": "AM4",
+              "powerConsumption": {
+                "@units": "Watts",
+                "value": 15.4
+              },
+              "incidents": 0
+            }
+          ]
+        }
+      ]
+    },
+    "software": {
+      "operating_system": {
+        "publisher": "Microsoft",
+        "name": "Windows",
+        "version": "11",
+        "crashes": 15,
+        "updated": [
+          "2019-09-09T00:00:00.00",
+          "2020-10-10T00:00:00.00",
+          "2021-12-12T00:00:00.00"
+        ],
+        "@language": "lt"
+      },
+      "programs": {
+        "shortcut": [
+          {
+            "name": "Photoshop",
+            "size": {
+              "@units": "MB",
+              "value": 122
+            },
+            "location": {
+              "folders": [
+                "Program files",
+                "Office2016",
+                "Word"
+              ],
+              "file": "word.exe"
+            },
+            "@privilages": "admin",
+            "@language": "en",
+            "@installedBy": "adminas1"
+          },
+          {
+            "name": "Sony Vegas 12",
+            "size": {
+              "@units": "MB",
+              "value": 122
+            },
+            "location": {
+              "folders": [
+                "Program files",
+                "Office2016",
+                "Word"
+              ],
+              "file": "word.exe"
+            },
+            "@privilages": "admin",
+            "@language": "en",
+            "@installedBy": "adminas1"
+          },
+          {
+            "name": "Paint",
+            "size": {
+              "@units": "MB",
+              "value": 122
+            },
+            "location": {
+              "folders": [
+                "Program files",
+                "Office2016",
+                "Word"
+              ],
+              "file": "word.exe"
+            },
+            "@privilages": "regular",
+            "@language": "lt",
+            "@installedBy": "adminas2"
+          }
+        ],
+        "program": [
+          {
+            "publisher": "Microsoft",
+            "name": "Word",
+            "version": "2016",
+            "crashes": 12,
+            "updated": [
+              "2020-11-11"
+            ],
+            "size": {
+              "@units": "GB",
+              "value": 12
+            },
+            "location": {
+              "folders": [
+                "Program files",
+                "Office2016",
+                "Word"
+              ],
+              "file": "word.exe"
+            },
+            "@privilages": "regular",
+            "@language": "lt",
+            "@installedBy": "useris2"
+          },
+          {
+            "publisher": "Valve",
+            "name": "Counter Strike",
+            "version": "1.6",
+            "crashes": 0,
+            "updated": [
+              "2001-09-11"
+            ],
+            "size": {
+              "@units": "MB",
+              "value": 122
+            },
+            "location": {
+              "folders": [
+                "Program files",
+                "Games",
+                "Steam"
+              ],
+              "file": "cs1.6.exe"
+            },
+            "@privilages": "regular",
+            "@language": "lt",
+            "@installedBy": "useris1"
+          }
+        ]
+      },
+      "users": {
+        "user": [
+          {
+            "password": "SL@ptaz0d1s",
+            "@privilages": "admin",
+            "@username": "adminas1"
+          },
+          {
+            "password": "SL@ptaz0d1s",
+            "@privilages": "admin",
+            "@username": "adminas2"
+          },
+          {
+            "fingerprint": "582afa145dfiu38418acsd2",
+            "@privilages": "regular",
+            "@username": "useris1"
+          },
+          {
+            "pin_code": "112",
+            "@privilages": "regular",
+            "@username": "useris2"
+          }
+        ],
+        "guest": [
+          {
+            "@username": "John0"
+          },
+          {
+            "@username": "John1"
+          },
+          {
+            "@username": "John2"
+          }
+        ]
+      }
+    }
+  }
+}

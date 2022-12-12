@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4lab</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+    <section>
+        <h2>Forma:</h2>
+        <form id="newComponent" onsubmit="serverisPOST(); return false;">
+            <label >title:</label>
+            <input type="text" name="title" id="titleNewComponent" onchange="validateTitle()">
+            <br>
+            <label>Incidents:</label>
+            <input type="text" name="incidents" id="incidentsNewComponent" onchange="validateIncidents()">
+            <br>
+            <label>Warranty:</label>
+            <input type="text" name="warranty" id="warrantyNewComponent" onchange="validateWarranty()">
+            <br>
+            <input type="submit" value="submit">
+        </form>
+    </section>
+        <h2>Manipuliacija:</h2>
+        <div id="texts">
+            <p class="textPart">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, consequuntur molestias nihil incidunt et laborum, vel magni recusandae dolorum sit necessitatibus obcaecati, atque facere a dolor modi labore ratione cum?
+            </p>
+            <p class="textPart">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p class="textPart">
+                Vitae aliquet nec ullamcorper sit amet risus nullam eget. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Tincidunt augue interdum velit euismod in.
+            </p>            
+        </div>
+        <div id="rectanglePart" style="background-color: red; width: 50px; height: 50px;"></div>
+        <br>
+        <button id="turinioManipuliavimas" onclick="manipuliuoti()">manipuliuoti</button>
+        <br>
+        <select name="number" id="deleteTag">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <button id="turinioManipuliavimas" onclick="manipuliuoti2()">manipuliuoti2</button>
+        <br>
+        <input type="text" name="iterpimas" id="tekstoPridejimas">
+        <button onclick="manipuliuoti3()">manipuliuoti3</button>
+    </section>
+    <section id="serveris">
+        <h2>Serveris:</h2>
+        <br>
+        <table border="1">
+            <tr>
+                <th>Title</th>
+                <th>Incidents</th>
+                <th>Warranty</th>
+            </tr>
+        </table>
+        <button onclick="serverisGET()">Get data</button>
+    </section>
+</body>
+</html>

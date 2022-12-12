@@ -1,0 +1,45 @@
+1.
+    Pasirinkta žymė: /computer/hardware/group
+    /computer/hardware/group/ancestor::* - isrinkome visus protevius
+    /computer/hardware/group/descendant::* - isrinkome visus ipedinius
+    /computer/hardware/group/following-sibling::* - isrinkome visų grupių brolius einant i prieki
+    /computer/hardware/group/preceding-sibling::* - visu grupiu broliai atgal
+    /computer/hardware/group/following::* - visi mazgai (iskyrus pats ir ipediniai) priekyje
+    /computer/hardware/group/preceding::* - visi mazgai (iskyrus pats ir proteviai) atgal
+    /computer/hardware/group/attribute::* - visi grupiu atributai
+2.
+    /descendant::component[connection = /descendant::connection[1] and position()>1]/name/text()
+    randa komponentus, kuriu jungtis yra tokia kaip ir pirmojo komponento (USB3.0) ir nebutu tai pats pirmasis
+3.
+    count(/descendant::component[incidents=0]) - suskaiciuoja kiek komponentu neturejo incidentu
+    sum(/descendant::powerConsumption ) - susumuoja kiek energijos naudojama
+4.
+    0.05 = true()
+    "100" + 1
+    -0.1 < false()
+5.  
+    /descendant::component[incidents > 10]/parent::group/attribute::type
+    suranda kuris komponentas turejo daugiau nei 10 incidentu ir isveda to komponento grupes tipa
+
+    AIBES:
+    1) /descendant::component[incidents > 10] ~ A aibe
+    2) /parent::group ~ B aibe
+    3) /attribute::type ~ C aibe
+    Gaultine aibe ~ D aibe
+
+    1) suranda pagal nurodyta testa (component) is visu mazgu:              a1 = {component, ..., component} (|a1| = 6)
+       ir a1 filtruoja zymes, jog incidents zyme butu >10:                  A = {component, component}
+    2) eina A nariu tevine asimi ir grazina tevine zyme, kuri yra group:    Bi={group}
+    3) einama Bi nariu zymiu atributus:                                     Ci ={attribute} = {{type}}
+       ir atrenka pagal testa (type):                                       C1= {"external"} C2= {"external"}
+       
+    4) Gaultineje aibeje vienodu nedubliuojam:                              D = C1 ∪ C2 = {"external"}
+
+6.  
+    1. /descendant::incidents = 0
+    2. /descendant::manufacturer = "AMD"
+    3. /descendant::component = true()
+    4. /descendant::crashes = /descendant::incidents
+7.    
+    1. //incidents < //crashes
+    2. //size < //crashes

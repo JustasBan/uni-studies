@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="grafas.xsd"?>
+<grafas>
+    <virsunes>
+        <virsune pavadinimas = "A" />
+        <virsune pavadinimas = "B" />
+        <virsune pavadinimas = "C" />
+        <virsune pavadinimas = "D" />
+        <virsune pavadinimas = "H" />
+    </virsunes>
+    <briaunos>
+        <briauna pirma= "A" antra="G" />
+        <briauna pirma= "A" antra="C" />
+        <briauna pirma= "A" antra="D" />
+        <briauna pirma= "B" antra="C" />
+    </briaunos>
+</grafas>

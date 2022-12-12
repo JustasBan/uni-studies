@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini eglute</title>
+</head>
+
+<body>
+    <script>
+        let line = '';
+
+        function triangle(times) {
+            for (let i = 1; i <= times; i++) {
+                line += ' '.repeat(times - i)
+                line += '*'.repeat(i + i - 1) + '\n'
+            }
+        }
+
+        function rectangle(times, triangleLength) {
+            for (let i = 1; i <= times; i++) {
+                line += ' '.repeat(triangleLength - 2)
+                line += '*'.repeat(3) + '\n'
+            }
+        }
+
+        function eglute() {
+            triangle(8)
+            rectangle(3, 8)
+            console.log(line.slice(0, -1));
+        }
+
+    </script>
+    
+    <button onclick="eglute()">eglute konsoleje atsiras</button>
+</body>
+
+</html>

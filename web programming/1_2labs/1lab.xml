@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer xmlns="http://www.darbas.org" xsi:schemaLocation="http://www.darbas.org 1lab.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <hardware>
+        <group type="external">
+            <component>
+                <title>Keyboard</title>
+                <origin>China</origin>
+                <manufacturer>Razer</manufacturer>
+                <model>Ornata</model>
+                <serialNo>6516168238</serialNo>
+                <warranty>2024-12-12</warranty>
+                <connection>USB3.0</connection>
+                <powerConsumption units="Watts">1.15</powerConsumption>
+                <incidents>20</incidents>
+            </component>
+            <component>
+                <title>Mouse</title>
+                <origin>China</origin>
+                <manufacturer>Razer</manufacturer>
+                <model>BasiliskV3</model>
+                <serialNo>6516168238</serialNo>
+                <warranty>2024-12-12</warranty>
+                <connection>USB3.0</connection>
+                <powerConsumption units="Watts">0.5</powerConsumption>
+                <incidents>11</incidents>
+            </component>
+            <component>
+                <title>Monitor</title>
+                <origin>Korea</origin>
+                <manufacturer>LG</manufacturer>
+                <model>L558</model>
+                <serialNo>3514531</serialNo>
+                <warranty>2022-12-12</warranty>
+                <connection>USB-C</connection>
+                <powerConsumption units="Watts">20</powerConsumption>
+                <incidents>0</incidents>
+            </component>
+        </group>
+        <group type="internal">
+            <component>
+                <title>RAM</title>
+                <origin>Taiwan</origin>
+                <manufacturer>Corsair</manufacturer>
+                <model>P588</model>
+                <serialNo>8721228327</serialNo>
+                <warranty>2023-12-12</warranty>
+                <connection>DIMM</connection>
+                <powerConsumption units="Watts">15.3</powerConsumption>
+                <incidents>0</incidents>
+            </component>
+            <component>
+                <title>Motherboard</title>
+                <origin>China</origin>
+                <manufacturer>Asus</manufacturer>
+                <model>S888</model>
+                <serialNo>8721228327</serialNo>
+                <warranty>2023-12-02</warranty>
+                <connection>Cables</connection>
+                <powerConsumption units="Watts">50.1</powerConsumption>
+                <incidents>1</incidents>
+            </component>
+            <component>
+                <title>CPU</title>
+                <origin>USA</origin>
+                <manufacturer>AMD</manufacturer>
+                <model>Threadripper3000</model>
+                <serialNo>8721228327</serialNo>
+                <warranty>2022-12-12</warranty>
+                <connection>AM4</connection>
+                <powerConsumption units="Watts">15.4</powerConsumption>
+                <incidents>0</incidents>
+            </component>
+        </group>
+    </hardware>
+    <software>
+        <operating_system language="lt">
+            <publisher>Microsoft</publisher>
+            <name>Windows</name>
+            <version>11</version>
+            <crashes>15</crashes>
+            <updated>2019-09-09 2020-10-10 2021-12-12</updated>
+        </operating_system>
+        <programs>
+            <shortcut privilages="admin" language="en" installedBy="adminas1">
+                <name>Photoshop</name>
+                <size units="MB">122</size>
+                <location>
+                    <folder>Program files</folder>
+                    <folder>Office2016</folder>
+                    <folder>Word</folder>
+                    word.exe
+                </location>
+            </shortcut>
+            <shortcut privilages="admin" language="en" installedBy="adminas1">
+                <name>Sony Vegas 12</name>
+                <size units="MB">122</size>
+                <location>
+                    <folder>Program files</folder>
+                    <folder>Office2016</folder>
+                    <folder>Word</folder>
+                    word.exe
+                </location>
+            </shortcut>
+            <shortcut privilages="regular" language="lt" installedBy="adminas2">
+                <name>Paint</name>
+                <size units="MB">122</size>
+                <location>
+                    <folder>Program files</folder>
+                    <folder>Office2016</folder>
+                    <folder>Word</folder>
+                    word.exe
+                </location>
+            </shortcut>
+            <program privilages="regular" language="lt" installedBy="useris2">
+                <publisher>Microsoft</publisher>
+                <name>Word</name>
+                <version>2016</version>
+                <crashes>12</crashes>
+                <updated>2020-11-11</updated>
+                <size units="GB">12</size>
+                <location>
+                    <folder>Program files</folder>
+                    <folder>Office2016</folder>
+                    <folder>Word</folder>
+                    word.exe
+                </location>
+            </program>
+            <program privilages="regular" language="lt" installedBy="useris1">
+                <publisher>Valve</publisher>
+                <name>Counter Strike</name>
+                <version>1.6</version>
+                <crashes>0</crashes>
+                <updated>2001-09-11</updated>
+                <size units="MB">122</size>
+                <location>
+                    <folder>Program files</folder>
+                    <folder>Games</folder>
+                    <folder>Steam</folder>
+                    cs1.6.exe
+                </location>
+            </program>
+        </programs>
+        <users>
+            <user privilages="admin" username="adminas1">
+                <password>slaptazodis</password>
+            </user>
+            <user privilages="admin" username="adminas2">
+                <password>slaptas</password>
+            </user>
+            <user privilages="regular" username="useris1">
+                <fingerprint>582afa145dfiu38418acsd2</fingerprint>
+            </user>
+            <user privilages="regular" username="useris2">
+                <pin_code>112</pin_code>
+            </user>
+            <guest username="John0" />
+            <guest username="John1" />
+            <guest username="John2" />
+        </users>
+    </software>
+</computer>

@@ -1,0 +1,44 @@
+1.
+    Pasirinkta žymė: /computer/hardware/group
+    /computer/hardware/group/ancestor::*
+    /computer/hardware/group/descendant::*
+    /computer/hardware/group/following-sibling::*
+    /computer/hardware/group/preceding-sibling::*
+    /computer/hardware/group/following::*
+    /computer/hardware/group/preceding::*
+    /computer/hardware/group/attribute::*
+2.
+    /descendant::component[connection = /descendant::connection[1] and position()>1]/title/text()
+3.
+    count(/descendant::component[incidents=0])
+    sum(/descendant::powerConsumption)
+4. 
+    0.05 = true()
+    "100" + 1
+    -0.1 < false()
+5.
+    /descendant::component[incidents > 10]/parent::group/attribute::type
+
+    AIBES:
+    1) /descendant::component[incidents > 10] ~ A aibe
+    2) /parent::group ~ B aibe
+    3) /attribute::type ~ C aibe
+    Gaultine aibe ~ D aibe
+
+    1)a1 = {component, ..., component} (|a1| = 6)
+      A = {component, component}
+
+    2)Bi={group}
+
+    3)Ci ={attribute} = {{type}}
+      C1= {"external"} C2= {"external"}
+       
+    4)D = C1 ∪ C2 = {"external"}
+6.
+    1. /descendant::incidents = 0
+    2. /descendant::manufacturer = "AMD"
+    3. /descendant::component = true()
+    4. /descendant::crashes = /descendant::incidents
+7.
+    1. //incidents < //crashes
+    2. //crashes > //size

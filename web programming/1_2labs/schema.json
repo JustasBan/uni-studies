@@ -1,0 +1,186 @@
+{
+    "$schema": "http://json-schema.org/draft-01/schema#",
+    "definitions": {
+        "basicFile": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "object",
+                    "properties": {
+                        "folders": {
+                            "type": "array"
+                        },
+                        "file": {
+                            "type": "string",
+                            "maxLength": 256,
+                            "pattern": "^(.*\\.exe)$"
+                        }
+                    }
+                },
+                "size": {
+                    "type": "object"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "@privilages": {
+                    "type": "string"
+                },
+                "@language": {
+                    "type": "string"
+                },
+                "@installedBy": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "location",
+                "size",
+                "name",
+                "@privilages",
+                "@language",
+                "@installedBy"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "computer": {
+            "type": "object",
+            "properties": {
+                "hardware": {
+                    "type": "object",
+                    "properties": {
+                        "group": {
+                            "type": "array",
+                            "additionalItems": {
+                                "type": "object",
+                                "properties": {
+                                    "place": {
+                                        "type": "string",
+                                        "enum": [
+                                            "external",
+                                            "internal"
+                                        ]
+                                    },
+                                    "component": {
+                                        "type": "array",
+                                        "additionalItems": {
+                                            "type": "object",
+                                            "properties": {
+                                                "incidents": {
+                                                    "type": "integer",
+                                                    "minimum": 0
+                                                },
+                                                "serialNo": {
+                                                    "type": "string",
+                                                    "oneOf": [
+                                                        {
+                                                            "pattern": "^\\d+"
+                                                        },
+                                                        {
+                                                            "pattern": "\\d+$"
+                                                        }
+                                                    ]
+                                                },
+                                                "warranty": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "connection": {
+                                                    "anyOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "null"
+                                                        }
+                                                    ]
+                                                },
+                                                "powerConsumption": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "value": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "software": {
+                    "type": "object",
+                    "properties": {
+                        "operating_system": {
+                            "type": "object"
+                        },
+                        "programs": {
+                            "type": "object",
+                            "properties": {
+                                "shortcut": {
+                                    "type": "array",
+                                    "additionalItems": {
+                                        "$ref": "#/definitions/basicFile"
+                                    }
+                                },
+                                "program": {
+                                    "type": "array",
+                                    "additionalItems": {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/definitions/basicFile"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "publisher": {
+                                                        "type": "string"
+                                                    },
+                                                    "crashes": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "publisher",
+                                                    "crashes"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "users": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "type": "array",
+                                    "additionalItems": {
+                                        "type": "object",
+                                        "properties": {
+                                            "password": {
+                                                "type": "string",
+                                                "pattern": "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()\\-__+.]){1,}).{8,}$"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "software",
+                "hardware"
+            ]
+        }
+    },
+    "required": [
+        "computer"
+    ]
+}

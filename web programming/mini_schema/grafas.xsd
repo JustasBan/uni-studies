@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="grafas" type="GrafoTipas"> 
+        <xs:key name="pavadinimoRibojimas">
+            <xs:selector xpath="virsunes/virsune" />
+            <xs:field xpath="@pavadinimas" />
+        </xs:key>
+        <xs:keyref name="nuorodaVirsunei" refer="pavadinimoRibojimas">
+            <xs:selector xpath="briaunos/briauna" />
+            <xs:field xpath="@pirma" />
+        </xs:keyref>
+        <xs:keyref name="nuorodaVirsunei2" refer="pavadinimoRibojimas">
+            <xs:selector xpath="briaunos/briauna" />
+            <xs:field xpath="@antra" />
+        </xs:keyref>
+    </xs:element>
+
+    <!-- Grafo sakos -->
+    <xs:complexType name="GrafoTipas">
+        <xs:sequence>
+            <xs:element name="virsunes" type="VirsuniuTipas">
+               
+            </xs:element>
+            <xs:element name="briaunos" type="BriaunuTipas"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Virsunes -->
+    <xs:complexType name="VirsuniuTipas">
+        <xs:sequence>
+            <xs:element name="virsune" type="virsune" minOccurs="2" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="virsune">
+        <xs:attribute use="required" name="pavadinimas" type="taskas"/>
+    </xs:complexType>
+
+    <!-- Briaunos -->
+    <xs:complexType name="BriaunuTipas">
+        <xs:sequence>
+            <xs:element name="briauna" type="briauna" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+  
+    <xs:complexType name="briauna">
+        <xs:attribute use="required" name="pirma" type="taskas"/>
+        <xs:attribute use="required" name="antra" type="taskas"/>
+    </xs:complexType>
+
+    <!-- Tasko tipas -->
+    <xs:simpleType name="taskas">
+        <xs:restriction base="xs:string">
+            <xs:length value="1" />
+            <xs:pattern value="[A-Z]" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

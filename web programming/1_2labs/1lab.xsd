@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- visi jūsų susikurti tipai turi priklausyti jūsų vardų sričiai -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.darbas.org" xmlns:mano="http://www.darbas.org" elementFormDefault="qualified">
+    <xs:element name="computer">
+
+        <!-- Bent viena nuoroda (keyref) į unikalumo ribojimą (unique) arba raktą (key) -->
+
+        <xs:key name="usersKey">
+            <xs:selector xpath="mano:software/mano:users/mano:user" />
+            <xs:field xpath="@username" />
+        </xs:key>
+
+        <xs:keyref name="usersKeyRef" refer="mano:usersKey">
+            <xs:selector xpath="mano:software/mano:programs/mano:program" />
+            <xs:field xpath="@installedBy" />
+        </xs:keyref>
+        <xs:keyref name="usersKeyRef2" refer="mano:usersKey">
+            <xs:selector xpath="mano:software/mano:programs/mano:shortcut" />
+            <xs:field xpath="@installedBy" />
+        </xs:keyref>
+    </xs:element>
+
+    <!-- Paprastas tipas, apribojantis kokį nors Schema standartinį tipą -->
+    <xs:element name="warranty" type="mano:WarrantyType" />
+
+    <xs:simpleType name="WarrantyType">
+        <xs:restriction base="xs:date">
+            <xs:minExclusive value="2022-11-14" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Prasmingas sąrašo tipas (list type) -->
+    <xs:element name="updated" type="mano:updatedType" />
+
+    <xs:simpleType name="updatedType">
+        <xs:list itemType="xs:date" />
+    </xs:simpleType>
+
+    <!-- Sudėtingi tipai su paprastu turiniu, 
+        išvesti praplėtimu (extension) iš jūsų bazinio tipo-->
+    <xs:element name="powerConsumption" type="mano:powerConsumptionFloatWithAttributeRestricted" />
+
+    <xs:simpleType name="powerConsumptionFloat">
+        <xs:restriction base="xs:float" />
+    </xs:simpleType>
+
+    <xs:complexType name="powerConsumptionFloatWithAttribute">
+        <xs:simpleContent>
+            <xs:extension base="mano:powerConsumptionFloat">
+                <xs:attribute name="units" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Sudėtingi tipai su paprastu turiniu, 
+        išvesti apribojimu (restriction) iš jūsų (ne XML Schema) bazinio tipo-->
+    <xs:complexType name="powerConsumptionFloatWithAttributeRestricted">
+        <xs:simpleContent>
+            <xs:restriction base="mano:powerConsumptionFloatWithAttribute">
+                <xs:minExclusive value="0" />
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Sudėtingi tipai su sudėtingu turiniu,
+         išvesti praplėtimu (extension) iš jūsų bazinio tipo -->
+
+    <xs:complexType name="operating_systemType">
+        <xs:sequence>
+            <xs:element name="publisher" minOccurs="0" />
+            <xs:element name="name" minOccurs="0" />
+            <xs:element name="version" minOccurs="0" />
+            <xs:element name="crashes" minOccurs="0" />
+            <xs:element name="updated" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="language" />
+    </xs:complexType>
+
+    <xs:complexType name="programType">
+        <xs:complexContent>
+            <xs:extension base="mano:operating_systemType">
+                <xs:sequence>
+                    <xs:element name="size" />
+                    <xs:element name="location" type="mano:locationType" />
+                </xs:sequence>
+                <xs:attribute name="privilages" />
+                <xs:attribute name="installedBy" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Sudėtingi tipai su sudėtingu turiniu,
+         išvesti apribojimu (restriction) iš jūsų bazinio tipo -->
+    <xs:complexType name="shortcutType">
+        <xs:complexContent>
+            <xs:restriction base="mano:programType">
+                <xs:sequence>
+                    <xs:element name="name" />
+                    <xs:element name="size" />
+                    <xs:element name="location" type="mano:locationType" />
+                </xs:sequence>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Sudėtingas tipas su mišriu turiniu -->
+
+    <xs:complexType name="locationType" mixed="true">
+        <xs:sequence>
+            <xs:element name="folder" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- choice valdymo struktūra -->
+
+    <xs:complexType name="usersType">
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="user" type="mano:userType" />
+            <xs:element name="guest" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="userType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="password" />
+                <xs:element name="fingerprint" />
+                <xs:element name="pin_code" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="privilages" />
+        <xs:attribute name="username" />
+    </xs:complexType>
+
+    <xs:element name="users" type="mano:usersType" />
+
+    <xs:complexType name="programsType">
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="program" type="mano:programType" />
+            <xs:element name="shortcut" type="mano:shortcutType" />
+        </xs:choice>
+    </xs:complexType>
+    <xs:element name="programs" type="mano:programsType" />
+
+    <xs:element name="operating_system" type="mano:operating_systemType" />
+
+</xs:schema>

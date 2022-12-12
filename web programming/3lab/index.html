@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <select name="menu" id="menu1">
+            <option value="hardware">hardware</option>
+            <option value="software">software</option>
+        </select>
+    </nav>
+    <section class="descriptions">
+        <h1>PC</h1>
+
+        <article>
+            <h2>Internal components</h2>
+            <h3>GPU</h3>
+            <p>Nvidia GTX 4080 delivers the ultra performance and features that enthusiast gamers and creators demand.
+                Bring
+                your games and creative projects to life with ray tracing and AI-powered graphics. It's powered by the
+                ultra-efficient NVIDIA Ada Lovelace architecture and 16GB of superfast G6X memory.</p>
+            <img src="4080.jpg" alt="GTX 4080" class="componentPicture">
+        </article>
+
+        <article>
+            <h2>External components</h2>
+            <h3>Gaming chair</h3>
+            <p>Get into the game with the DXRacer gaming chair, which delivers high-performance comfort and support.
+                This
+                chair swivels 360-degrees and features a tilt control that supports a variety of reclining positions,
+                perfect for a variety of gaming postures.</p>
+            <img src="chair.JPG" alt="Chair picture" class="componentPicture">
+        </article>
+    </section>
+
+    <section>
+        <h2>Nuoroda</h2>
+        <a href="http://google.lt">Nuoroda</a>
+    </section>
+
+    <section>
+        <h2>Vartotoju lenteles</h2>
+        <table class="tableUsers">
+            <tr>
+                <th colspan="3">Users</th>
+            </tr>
+            <tr>
+                <th>username</th>
+                <th>privilages</th>
+                <th>password</th>
+            </tr>
+            <tr>
+                <td>adminas1</td>
+                <td rowspan="2">admin</td>
+                <td>slaptazodis</td>
+            </tr>
+            <tr>
+                <td>adminas2</td>
+                <td>slaptas</td>
+            </tr>
+            <tr>
+                <td>useris1</td>
+                <td rowspan="2">regular</td>
+                <td>582afa145dfiu38418acsd2</td>
+            </tr>
+            <tr>
+                <td>useris1</td>
+                <td>112</td>
+            </tr>
+            <tr>
+                <th colspan="3">Guests</th>
+            </tr>
+            <tr>
+                <td colspan="3">Guest1</td>
+            </tr>
+            <tr>
+                <td colspan="3">Guest2</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Programs list</h3>
+        <ul>
+            <li>
+                Counter Strike
+            </li>
+            <li>
+                Word
+            </li>
+            <li>
+                Paint
+            </li>
+        </ul>
+
+        
+        <h3>Launch priority</h3>
+        <ol>
+            <li>Windows</li>
+            <li>Skype</li>
+        </ol>
+    </section>
+
+    <section>
+        <h3>Add new component</h3>
+        <form name="Component" action="index.html" method="post">
+            Title: <input type="text" name="title" required><br>
+            Is internal: <input type="checkbox" name="isInternal" required><br>
+            Component color: <input type="color" name="ComponentColor"><br>
+            Buyer email: <input type="email" name="buyerEmail" required><br>
+            Warranty card: <input type="file" name="warrantyFile" required><br>
+            <input type="submit" value="send">
+        </form>
+    </section>
+
+</body>
+
+</html>
