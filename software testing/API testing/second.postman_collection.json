@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "75f788cb-01eb-4cd4-906d-bc165911d7a3",
+		"name": "Gmail2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24034839"
+	},
+	"item": [
+		{
+			"name": "New Email",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// plain-text string\r",
+							"const str = 'From: fazaslt5@gmail.com\\nTo: fazaslt@gmail.com\\nSubject: An RFC 822 formatted message\\n\\nThis is the plain text body of the message.';\r",
+							"\r",
+							"// create a buffer\r",
+							"const buff = Buffer.from(str, 'utf-8');\r",
+							"\r",
+							"// decode buffer as Base64\r",
+							"const base64 = buff.toString('base64');\r",
+							"\r",
+							"console.log(base64)\r",
+							"pm.environment.set(\"message64\", base64);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"id\", pm.response.json().id);\r",
+							"\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"raw\" : \"{{message64}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/gmail/v1/users/me/messages/send",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gmail",
+						"v1",
+						"users",
+						"me",
+						"messages",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New label",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let length = 7\r",
+							"const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+							"let result = ' ';\r",
+							"const charactersLength = characters.length;\r",
+							"for(let i = 0; i < length; i++) {\r",
+							"    result += \r",
+							"    characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+							"}\r",
+							"\r",
+							"pm.environment.set(\"label\", result);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"label_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"labelListVisibility\": \"labelShow\",\r\n  \"messageListVisibility\": \"show\",\r\n  \"name\": \"{{label}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/gmail/v1/users/me/labels",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gmail",
+						"v1",
+						"users",
+						"me",
+						"labels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Label email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let labels = pm.response.json().labelIds\r",
+							"\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"     pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"addLabelIds\": [\r\n    \"{{label_id}}\"\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/gmail/v1/users/me/messages/{{id}}/modify",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gmail",
+						"v1",
+						"users",
+						"me",
+						"messages",
+						"{{id}}",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let labely = pm.environment.get(\"label_id\")\r",
+							"let labels = pm.response.json().labelIds\r",
+							"\r",
+							"console.log(labels.filter(x => x.toString() === labely.toString()))\r",
+							"\r",
+							"pm.test(\"Email contains label\", () => {\r",
+							"    pm.expect(labels.filter(x => x.toString() === labely.toString()).length > 0).to.be.true\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/gmail/v1/users/me/messages/{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"gmail",
+						"v1",
+						"users",
+						"me",
+						"messages",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenName",
+				"value": "Token4",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "{{access_token}}",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "http://localhost",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "https://mail.google.com",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://oauth2.googleapis.com/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.google.com/o/oauth2/auth",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
