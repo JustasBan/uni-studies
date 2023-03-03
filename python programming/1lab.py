@@ -15,9 +15,8 @@ Rezultatas [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
 Masyvas gali būti bet kokio dydžio ir atsitiktinai sugeneruojamas.
 """
 def pasikartojimas1(arr, N):
-    arr *= N
-    return arr
-#print(pasikartojimas([1,2,3,4], 3))
+    return np.tile(arr, (1, N))
+#print(pasikartojimas1([1,2,3,4], 3))
 
 
 #3.	Sukurkite masyvą iš pasikartojančių elementų.
@@ -26,8 +25,7 @@ Duotas skaičius 3 ir pasikartojimų skaičius 4.
 Rezultatas [3, 3, 3, 3]
 """
 def pasikartojimas2(number, repeat):
-    arr = [number]*repeat
-    return arr
+    return np.full((repeat,), number)
 #print(pasikartojimas2(3, 4))
 
 
@@ -43,10 +41,9 @@ def ireminimas():
 
 
 #5.	Sukurkite masyvą dydžio 8 x 8, kur 1 ir 0 išdėlioti šachmatine tvarka.
-def sachmatai():
-    arr = np.zeros((8, 8), dtype=int)
-    arr[::2,::2] = 1
-    arr[1::2,1::2] = 1
+def sachmatai(n=8):
+    indices = np.arange(n * n).reshape(n, n)
+    arr = np.bitwise_xor(indices // n, indices % n) % 2
     return arr
 #print(sachmatai())
 
@@ -61,7 +58,9 @@ def pozicijuSuma(n):
 #7.	Sukurkite atsitiktinį masyvą dydžio 5×5 naudodami np.random.rand(5, 5). Surūšiuokite eilutes pagal antrąjį stulpelį. 
 def surusiuotasPagalAntraStulpeliAtsitiktinisMasyvas():
     arr = np.random.rand(5,5)
-    return arr[arr[:,1].argsort()]
+    cols = arr[:, 1]
+    indices = np.argsort(cols)
+    return arr[indices]
 #print(surusiuotasPagalAntraStulpeliAtsitiktinisMasyvas())
 
 
@@ -128,5 +127,3 @@ def masyvas2(v=5, d=3):
     ax.set_title('Histograma')
     plt.show()
 #masyvas2()
-
-
