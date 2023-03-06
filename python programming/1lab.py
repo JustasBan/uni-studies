@@ -1,3 +1,5 @@
+#Justas Baniulis 2015956
+
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt

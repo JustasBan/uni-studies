@@ -1,0 +1,2856 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8087
+basePath: /
+paths:
+  /DiscountDeleteByProduct/{product}:
+    delete:
+      tags:
+        - Discount
+      summary: delete discount by PRODUCT
+      operationId: deleteDiscountByProductUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: product
+          in: path
+          description: product
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /DiscountUpdateByProduct/{product}:
+    put:
+      tags:
+        - Discount
+      summary: update discount by PRODUCT
+      operationId: updateDiscountByProductUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: product
+          in: path
+          description: product
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: discount
+          description: discount
+          required: true
+          schema:
+            $ref: '#/definitions/Discount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Discount'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /OrderDeleteById/{id}:
+    delete:
+      tags:
+        - Order
+      summary: delete order by ID
+      operationId: deleteProductByIdUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /OrderUpdateById/{id}:
+    put:
+      tags:
+        - Order
+      summary: update order by ID
+      operationId: updateOrderByIdUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: order
+          description: order
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Order'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /ProductUpdateById/{id}:
+    put:
+      tags:
+        - Product
+      summary: update produt by ID
+      operationId: updateProductByIdUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: product
+          description: product
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Product'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /ReservationDeleteById/{id}:
+    delete:
+      tags:
+        - Reservation
+      summary: delete reservation by ID
+      operationId: deleteReservationByIdUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /ReservationUpdateById/{id}:
+    put:
+      tags:
+        - Reservation
+      summary: update  reservation by ID
+      operationId: updateReservationByIdUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: reservation
+          description: reservation
+          required: true
+          schema:
+            $ref: '#/definitions/Reservation'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Reservation'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /TaxDeleteByOrder/{order}:
+    delete:
+      tags:
+        - Tax
+      summary: delete tax by ORDER
+      operationId: deleteTaxByOrderUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: order
+          in: path
+          description: order
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /TaxUpdateByOrder/{order}:
+    put:
+      tags:
+        - Tax
+      summary: update tax by ORDER
+      operationId: updateTaxByOrderUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: order
+          in: path
+          description: order
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: tax
+          description: tax
+          required: true
+          schema:
+            $ref: '#/definitions/Tax'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Tax'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /changeCustomerInformationByHisUsername{username, name, surname, dataOfBirth, phoneNumber, emailAddress, password}}:
+    put:
+      tags:
+        - Customer
+      summary: 'Change Customer information in the System '
+      operationId: changeCustomerInformationUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: username
+          in: query
+          description: username
+          required: false
+          type: string
+        - name: name
+          in: query
+          description: name
+          required: false
+          type: string
+        - name: surname
+          in: query
+          description: surname
+          required: false
+          type: string
+        - name: dataOfBirth
+          in: query
+          description: dataOfBirth
+          required: false
+          type: string
+          format: date-time
+        - name: phoneNumber
+          in: query
+          description: phoneNumber
+          required: false
+          type: string
+        - name: emailAddress
+          in: query
+          description: emailAddress
+          required: false
+          type: string
+        - name: password
+          in: query
+          description: password
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /changeCustomerLoyaltyTypeByHisMembershipCard{membershipCard, loyaltyType}:
+    patch:
+      tags:
+        - Customer
+      summary: 'Change Customer LoyaltyType in the System '
+      operationId: changeCustomerLoyaltyTypeUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: membershipCard
+          in: path
+          description: membershipCard
+          required: true
+          type: string
+        - name: loyaltyType
+          in: path
+          description: loyaltyType
+          required: true
+          type: string
+          enum:
+            - BronzeCustomers
+            - SilverCustomers
+            - GoldCustomers
+            - PlatinumCustomers
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /changeEmployee{employeeId, email, password, hourlyPayRate, position}}:
+    put:
+      tags:
+        - Employee
+      summary: Change Employee information
+      operationId: changeEmployeeInformationUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: employeeId
+          in: query
+          description: employeeId
+          required: false
+          type: integer
+          format: int32
+        - name: email
+          in: query
+          description: email
+          required: false
+          type: string
+        - name: password
+          in: query
+          description: password
+          required: false
+          type: string
+        - name: hourlyPayRate
+          in: query
+          description: hourlyPayRate
+          required: false
+          type: number
+        - name: position
+          in: query
+          description: position
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Employee'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /changePosition{positionId, title, description, permisions, accesToObjects}}:
+    put:
+      tags:
+        - Position
+      summary: Change Position information
+      operationId: changePositionInformationUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: positionId
+          in: query
+          description: positionId
+          required: false
+          type: integer
+          format: int32
+        - name: title
+          in: query
+          description: title
+          required: false
+          type: string
+        - name: description
+          in: query
+          description: description
+          required: false
+          type: string
+        - name: permisions
+          in: query
+          description: permisions
+          required: false
+          type: string
+          enum:
+            - Nzn
+        - name: accesToObjects
+          in: query
+          description: accesToObjects
+          required: false
+          type: string
+          enum:
+            - ReadAccess
+            - WriteAccess
+            - UpdateAccess
+            - DeleteAccess
+            - AccessToSensitiveInformation
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Position'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /changeShift{shiftId, employeeId, password, hourlyPayRate, position}}:
+    put:
+      tags:
+        - Shift
+      summary: Change Shift information
+      operationId: changeShiftUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: query
+          description: shiftId
+          required: false
+          type: integer
+          format: int32
+        - name: employeeId
+          in: query
+          description: employeeId
+          required: false
+          type: integer
+          format: int32
+        - name: startTime
+          in: query
+          description: startTime
+          required: false
+          type: string
+          format: date-time
+        - name: endTime
+          in: query
+          description: endTime
+          required: false
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /createACustomerByCustomerHimself/{name, surname, dataOfBirth, phoneNumber, emailAddress, membershipCard, username, password}:
+    post:
+      tags:
+        - Customer
+      summary: Create The Customer in the System
+      operationId: createACustomerUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: name
+          in: query
+          description: name
+          required: false
+          type: string
+        - name: surname
+          in: query
+          description: surname
+          required: false
+          type: string
+        - name: dataOfBirth
+          in: query
+          description: dataOfBirth
+          required: false
+          type: string
+          format: date-time
+        - name: phoneNumber
+          in: query
+          description: phoneNumber
+          required: false
+          type: string
+        - name: emailAddress
+          in: query
+          description: emailAddress
+          required: false
+          type: string
+        - name: membershipCard
+          in: query
+          description: membershipCard
+          required: false
+          type: string
+        - name: username
+          in: query
+          description: username
+          required: false
+          type: string
+        - name: password
+          in: query
+          description: password
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /createACustomerByEmployee/{name, surname, dataOfBirth, phoneNumber, emailAddress, membershipCard}:
+    post:
+      tags:
+        - Customer
+      summary: Create The Customer in the System by Employee
+      operationId: createACustomerUsingPOST_1
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: name
+          in: query
+          description: name
+          required: false
+          type: string
+        - name: surname
+          in: query
+          description: surname
+          required: false
+          type: string
+        - name: dataOfBirth
+          in: query
+          description: dataOfBirth
+          required: false
+          type: string
+          format: date-time
+        - name: phoneNumber
+          in: query
+          description: phoneNumber
+          required: false
+          type: string
+        - name: emailAddress
+          in: query
+          description: emailAddress
+          required: false
+          type: string
+        - name: membershipCard
+          in: query
+          description: membershipCard
+          required: false
+          type: string
+        - name: loyaltyType
+          in: query
+          description: loyaltyType
+          required: false
+          type: string
+          enum:
+            - BronzeCustomers
+            - SilverCustomers
+            - GoldCustomers
+            - PlatinumCustomers
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /createEmployee/{email, password, hourlyPayRate, position}:
+    post:
+      tags:
+        - Employee
+      summary: Create Employee
+      operationId: createEmployeeUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: email
+          in: query
+          description: email
+          required: false
+          type: string
+        - name: password
+          in: query
+          description: password
+          required: false
+          type: string
+        - name: hourlyPayRate
+          in: query
+          description: hourlyPayRate
+          required: false
+          type: number
+        - name: position
+          in: query
+          description: position
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Employee'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /createPosition/{title, description, permisions, accesToObjects}:
+    post:
+      tags:
+        - Position
+      summary: Create Position
+      operationId: createPositionUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: title
+          in: query
+          description: title
+          required: false
+          type: string
+        - name: description
+          in: query
+          description: description
+          required: false
+          type: string
+        - name: permisions
+          in: query
+          description: permisions
+          required: false
+          type: string
+          enum:
+            - Nzn
+        - name: accesToObjects
+          in: query
+          description: accesToObjects
+          required: false
+          type: string
+          enum:
+            - ReadAccess
+            - WriteAccess
+            - UpdateAccess
+            - DeleteAccess
+            - AccessToSensitiveInformation
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Position'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /createShift/{employeeId, startTime, endTime}:
+    post:
+      tags:
+        - Shift
+      summary: Create Shift
+      operationId: createShiftUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: employeeId
+          in: query
+          description: employeeId
+          required: false
+          type: integer
+          format: int32
+        - name: startTime
+          in: query
+          description: startTime
+          required: false
+          type: string
+          format: date-time
+        - name: endTime
+          in: query
+          description: endTime
+          required: false
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /createTip/{giver, tipType, givenDate, receiverId}:
+    post:
+      tags:
+        - Tip
+      summary: Create Tip
+      operationId: createTipUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: giver
+          in: query
+          description: giver
+          required: false
+          type: string
+        - name: tipType
+          in: query
+          description: tipType
+          required: false
+          type: string
+          enum:
+            - FlatSum
+            - Percentage
+        - name: givenDate
+          in: query
+          description: givenDate
+          required: false
+          type: string
+          format: date-time
+        - name: receiverId
+          in: query
+          description: receiverId
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Tip'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /deleteACompanyByCompanyName/{companyName}:
+    delete:
+      tags:
+        - Company
+      summary: 'Delete The Customer in the System '
+      operationId: deleteACompanyUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: companyName
+          in: query
+          description: companyName
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /deleteCustomerById/{customerId}:
+    delete:
+      tags:
+        - Customer
+      summary: 'Delete The Customer in the System '
+      operationId: deleteACustomerUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: customerId
+          in: path
+          description: customerId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /deleteEmployeeById/{employeeId}:
+    delete:
+      tags:
+        - Employee
+      summary: Delete Employee by Id
+      operationId: deleteEmployeeUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: employeeId
+          in: query
+          description: employeeId
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Employee'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /deletePositionById/{positionId}:
+    delete:
+      tags:
+        - Position
+      summary: Delete Position by Id
+      operationId: deletePositionUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: positionId
+          in: path
+          description: positionId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Position'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /deleteTipById/{tipId}:
+    delete:
+      tags:
+        - Tip
+      summary: Delete Tip by Id
+      operationId: deleteTipUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: tipId
+          in: query
+          description: tipId
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Tip'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /discount:
+    post:
+      tags:
+        - Discount
+      summary: Create new discount
+      operationId: createDiscountUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: discount
+          description: discount
+          required: true
+          schema:
+            $ref: '#/definitions/Discount'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Discount'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /discount/{product}:
+    get:
+      tags:
+        - Discount
+      summary: View one discount
+      operationId: viewDiscountUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: product
+          in: path
+          description: product
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /discounts:
+    get:
+      tags:
+        - Discount
+      summary: View all discounts
+      operationId: viewDiscountsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Discount'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCompanies:
+    get:
+      tags:
+        - Company
+      summary: 'Get list of Companies in the System '
+      operationId: getCompaniesUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCompaniesByRelationshipType/{relationshipType}:
+    get:
+      tags:
+        - Company
+      summary: 'Get list of Companies in the System '
+      operationId: getCompaniesByRelationshipTypeUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: relationshipType
+          in: path
+          description: relationshipType
+          required: true
+          type: string
+          enum:
+            - Supplier
+            - Customer
+            - SupplierAndCustomer
+            - Other
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Company'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCompaniesByServiceType/{serviceType}:
+    get:
+      tags:
+        - Company
+      summary: 'Get list of Companies in the System '
+      operationId: getCompaniesByServiceTypeUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: serviceType
+          in: path
+          description: serviceType
+          required: true
+          type: string
+          enum:
+            - Consulting
+            - LegalService
+            - Marketing
+            - Manufacturing
+            - Delivery
+            - Other
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Company'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCompaniesBySupplierId/{supplierId}:
+    get:
+      tags:
+        - Company
+      summary: 'Get Companies in the System '
+      operationId: getCompaniesBySupplierIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: supplierId
+          in: path
+          description: supplierId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Company'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCompanyByName/{companyName}:
+    get:
+      tags:
+        - Company
+      summary: 'Get specific Company in the System '
+      operationId: getCompanyByNameUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: companyName
+          in: path
+          description: companyName
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Company'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCustomerById/{customerId}:
+    get:
+      tags:
+        - Customer
+      summary: 'Get specific Customer in the System '
+      operationId: getCustomerByIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: customerId
+          in: path
+          description: customerId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCustomerByMembershipCard/{membershipCard}:
+    get:
+      tags:
+        - Customer
+      summary: 'Get specific Customer in the System '
+      operationId: getCustomerByMembershipCardUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: membershipCard
+          in: path
+          description: membershipCard
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCustomerByName/{name}:
+    get:
+      tags:
+        - Customer
+      summary: 'Get specific Customer in the System '
+      operationId: getCustomerByNameUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: name
+          in: path
+          description: name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCustomerBySurname/{surname}:
+    get:
+      tags:
+        - Customer
+      summary: 'Get specific Customer in the System '
+      operationId: getCustomerBySurnameUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: surname
+          in: path
+          description: surname
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCustomerByUsernameAndPassword/{username, password}:
+    get:
+      tags:
+        - Customer
+      summary: 'Get specific Customer in the System '
+      operationId: getCustomerByUsernameAndPasswordUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: username
+          in: path
+          description: username
+          required: true
+          type: string
+        - name: password
+          in: path
+          description: password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Customer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getCustomers:
+    get:
+      tags:
+        - Customer
+      summary: 'Get list of Customers in the System '
+      operationId: getCustomersUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getEmployeeByEmail/{email}:
+    get:
+      tags:
+        - Employee
+      summary: Get Employee by Email
+      operationId: getEmployeeByEmailUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: email
+          in: path
+          description: email
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Employee'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getEmployeeById/{employeeId}:
+    get:
+      tags:
+        - Employee
+      summary: Get Employee by Id
+      operationId: getEmployeeByIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: employeeId
+          in: path
+          description: employeeId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Employee'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getEmployees:
+    get:
+      tags:
+        - Employee
+      summary: Get list of Employees
+      operationId: getEmployeesUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getPositionById/{positionId}:
+    get:
+      tags:
+        - Position
+      summary: Get Position by Id
+      operationId: getPositionByIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: positionId
+          in: path
+          description: positionId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Position'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getPositionByTitle/{title}:
+    get:
+      tags:
+        - Position
+      summary: Get Position by title
+      operationId: getPositionByTitleUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: title
+          in: path
+          description: title
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Position'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getPositions:
+    get:
+      tags:
+        - Position
+      summary: Get list of Positions
+      operationId: getPositionsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getShiftById/{shiftId}:
+    get:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    head:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingHEAD
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    options:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingOPTIONS
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - Shift
+      summary: Get Shift by Id
+      operationId: getShiftByIdUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: shiftId
+          in: path
+          description: shiftId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /getShifts:
+    get:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    head:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingHEAD
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    options:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingOPTIONS
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - Shift
+      summary: Get list of Shifts
+      operationId: getShiftsUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /getTipById/{tipId}:
+    get:
+      tags:
+        - Tip
+      summary: Get Tip by Id
+      operationId: getTipByIdUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: tipId
+          in: path
+          description: tipId
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Tip'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /getTips:
+    get:
+      tags:
+        - Tip
+      summary: Get list of Tips
+      operationId: getTipsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Iterable'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /order:
+    post:
+      tags:
+        - Order
+      summary: Create new order
+      operationId: createOrderUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: order
+          description: order
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Order'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /orderItem:
+    post:
+      tags:
+        - Order
+      summary: add product to order
+      operationId: addProductUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: orderItem
+          description: orderItem
+          required: true
+          schema:
+            $ref: '#/definitions/OrderItem'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /orders:
+    get:
+      tags:
+        - Order
+      summary: View all orders
+      operationId: viewOrdersUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /product:
+    post:
+      tags:
+        - Product
+      summary: Create new product/service
+      operationId: createProductUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: product
+          description: product
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Product'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /product/{id}:
+    get:
+      tags:
+        - Product
+      summary: View one product/service
+      operationId: viewProductUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /products:
+    get:
+      tags:
+        - Product
+      summary: View all products/services
+      operationId: viewProductsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /productsDeleteById/{id}:
+    delete:
+      tags:
+        - Product
+      summary: delete product/service by ID
+      operationId: deleteProductByIdUsingDELETE_1
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /productsDeleteById/{name}:
+    delete:
+      tags:
+        - Product
+      summary: delete product/service by name
+      operationId: deleteProductByNameUsingDELETE
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: name
+          in: path
+          description: name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /refund/{id}:
+    post:
+      tags:
+        - Refunds
+      summary: create ticket
+      operationId: createRefundTicketUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: ticket
+          description: ticket
+          required: true
+          schema:
+            $ref: '#/definitions/RefundTicket'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RefundTicket'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /refund/{id}/{type}:
+    post:
+      tags:
+        - Refunds
+      summary: approve ticket
+      operationId: approveTicketUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+        - name: type
+          in: path
+          description: type
+          required: true
+          type: string
+          enum:
+            - FullRefundAndKeepItems
+            - PartialRefundAndKeepItems
+            - FullRefundAndReturnItems
+            - PartialRefundAndReturnItems
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RefundTicket'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /reservation:
+    post:
+      tags:
+        - Reservation
+      summary: Create new reservation
+      operationId: createReservationUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: reservation
+          description: reservation
+          required: true
+          schema:
+            $ref: '#/definitions/Reservation'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Reservation'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /reservation/{id}:
+    get:
+      tags:
+        - Reservation
+      summary: View one reservation
+      operationId: viewReservationUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /reservations:
+    get:
+      tags:
+        - Reservation
+      summary: View all reservations
+      operationId: viewReservationsUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Reservation'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /tax:
+    post:
+      tags:
+        - Tax
+      summary: Create new tax
+      operationId: createTaxUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: tax
+          description: tax
+          required: true
+          schema:
+            $ref: '#/definitions/Tax'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Tax'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /tax/{order}:
+    get:
+      tags:
+        - Tax
+      summary: View one tax
+      operationId: viewTaxUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: order
+          in: path
+          description: order
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /taxes:
+    get:
+      tags:
+        - Tax
+      summary: View all taxes
+      operationId: viewTaxesUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Tax'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+definitions:
+  Company:
+    type: object
+    required:
+      - address
+      - companyName
+      - contactInformation
+      - relationshipType
+      - serviceType
+      - supplierId
+    properties:
+      address:
+        type: string
+        description: test address
+      companyName:
+        type: string
+        description: test companyName
+      contactInformation:
+        type: string
+        description: test contactInformation
+      relationshipType:
+        type: string
+        description: test relationshipType
+        enum:
+          - Supplier
+          - Customer
+          - SupplierAndCustomer
+          - Other
+      serviceType:
+        type: string
+        description: test serviceType
+        enum:
+          - Consulting
+          - LegalService
+          - Marketing
+          - Manufacturing
+          - Delivery
+          - Other
+      supplierId:
+        type: integer
+        format: int32
+        description: test 1
+  Customer:
+    type: object
+    properties:
+      customerId:
+        type: integer
+        format: int32
+      dataOfBirth:
+        type: string
+        format: date-time
+      emailAddress:
+        type: string
+      joinDate:
+        type: string
+        format: date-time
+      loyaltyType:
+        type: string
+        enum:
+          - BronzeCustomers
+          - SilverCustomers
+          - GoldCustomers
+          - PlatinumCustomers
+      membershipCard:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phoneNumber:
+        type: string
+      surname:
+        type: string
+      username:
+        type: string
+  Discount:
+    type: object
+    required:
+      - ammount
+      - discountEnd
+      - discountStart
+      - discountType
+      - product
+    properties:
+      ammount:
+        type: number
+        description: test 1.0
+      discountEnd:
+        type: string
+        format: date-time
+        description: test discountEnd
+      discountStart:
+        type: string
+        format: date-time
+        description: test discountStart
+      discountType:
+        type: string
+        description: test discountType
+        enum:
+          - FlatDiscount
+          - PercentageDiscount
+      product:
+        type: integer
+        format: int32
+        description: test 1
+  Employee:
+    type: object
+    properties:
+      email:
+        type: string
+      employeeId:
+        type: integer
+        format: int32
+      hourlyPayRate:
+        type: number
+      password:
+        type: string
+      position:
+        type: integer
+        format: int32
+  Iterable:
+    type: object
+  ModelAndView:
+    type: object
+    properties:
+      empty:
+        type: boolean
+      model:
+        type: object
+      modelMap:
+        type: object
+        additionalProperties:
+          type: object
+      reference:
+        type: boolean
+      status:
+        type: string
+        enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+      view:
+        $ref: '#/definitions/View'
+      viewName:
+        type: string
+  Order:
+    type: object
+    required:
+      - deliveryDate
+      - deliveryMethod
+      - orderId
+      - paymentMethod
+      - purchaseDate
+      - state
+    properties:
+      additionalComments:
+        type: string
+      deliveryDate:
+        type: string
+        format: date-time
+        description: Order delivery date
+      deliveryMethod:
+        type: string
+        description: Order delivery method
+        enum:
+          - DeliveryToHome
+          - DeliveryToPostMachine
+          - InPersonPickup
+      orderId:
+        type: integer
+        format: int32
+        example: 1
+        description: Order id of the order
+      paymentMethod:
+        type: string
+        description: Order payment method
+        enum:
+          - Cash
+          - BankTransfer
+          - Check
+      purchaseDate:
+        type: string
+        format: date-time
+        description: Order date
+      state:
+        type: string
+        description: Order state
+        enum:
+          - Pending
+          - Approved
+          - Shipping
+          - Delivered
+          - Closed
+      transactionDetails:
+        type: string
+  OrderItem:
+    type: object
+    required:
+      - orderId
+      - productId
+    properties:
+      orderId:
+        type: integer
+        format: int32
+        description: test 1
+      productId:
+        type: integer
+        format: int32
+        description: test 1
+  Position:
+    type: object
+    properties:
+      accesToObjects:
+        type: string
+        enum:
+          - ReadAccess
+          - WriteAccess
+          - UpdateAccess
+          - DeleteAccess
+          - AccessToSensitiveInformation
+      description:
+        type: string
+      permisions:
+        type: string
+        enum:
+          - Nzn
+      positionId:
+        type: integer
+        format: int32
+      title:
+        type: string
+  Product:
+    type: object
+    required:
+      - name
+      - price
+      - productId
+    properties:
+      barcode:
+        type: string
+        description: barcode of the Product
+      name:
+        type: string
+        example: Nike jogging shoes
+        description: Name of the Product
+      price:
+        type: number
+        example: 30.3
+        description: Price of the Product
+      productId:
+        type: integer
+        format: int32
+        example: 1
+        description: ProductId of the Product
+  RefundTicket:
+    type: object
+    properties:
+      granted:
+        type: boolean
+        example: false
+      reason:
+        type: string
+      refundTicketId:
+        type: integer
+        format: int32
+      refundType:
+        type: string
+        enum:
+          - FullRefundAndKeepItems
+          - PartialRefundAndKeepItems
+          - FullRefundAndReturnItems
+          - PartialRefundAndReturnItems
+      relatedOrder:
+        type: integer
+        format: int32
+      requestDate:
+        type: string
+        format: date-time
+  Reservation:
+    type: object
+    required:
+      - companyId
+      - createdDate
+      - customerId
+      - duration
+      - location
+      - premiseType
+      - reservationDate
+      - reservationId
+      - reservationNotes
+    properties:
+      companyId:
+        type: integer
+        format: int32
+        description: test 1
+      createdDate:
+        type: string
+        format: date-time
+        description: test createdDate
+      customerId:
+        type: integer
+        format: int32
+        description: test 1
+      duration:
+        type: string
+        format: date-time
+        description: test duration
+      location:
+        type: string
+        description: test location
+      premiseType:
+        type: string
+        description: test premiseType
+        enum:
+          - RestaurantTable
+          - HotelRoom
+          - Other
+      reservationDate:
+        type: string
+        format: date-time
+        description: test reservationDate
+      reservationId:
+        type: integer
+        format: int32
+        description: test 1
+      reservationNotes:
+        type: string
+        description: test reservationNotes
+  Shift:
+    type: object
+    properties:
+      employeeId:
+        type: integer
+        format: int32
+      endTime:
+        type: string
+        format: date-time
+      shiftId:
+        type: integer
+        format: int32
+      startTime:
+        type: string
+        format: date-time
+  Tax:
+    type: object
+    required:
+      - order
+      - tax
+      - taxReason
+      - taxType
+    properties:
+      order:
+        type: integer
+        format: int32
+        description: test 1
+      tax:
+        type: number
+        description: test 1.0
+      taxReason:
+        type: string
+        description: test taxReason
+        enum:
+          - VAT
+          - SalesTax
+          - ExcisesTax
+          - Tariff
+          - LicenseFees
+          - Poll
+          - Other
+      taxType:
+        type: string
+        description: test taxType
+        enum:
+          - Percentage
+          - FlatTax
+  Tip:
+    type: object
+    properties:
+      givenDate:
+        type: string
+        format: date-time
+      giver:
+        type: string
+      receiverId:
+        type: integer
+        format: int32
+      tipId:
+        type: integer
+        format: int32
+      tipType:
+        type: string
+        enum:
+          - FlatSum
+          - Percentage
+  View:
+    type: object
+    properties:
+      contentType:
+        type: string
