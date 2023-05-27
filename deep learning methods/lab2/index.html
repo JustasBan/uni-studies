@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+</head>
+<body>
+    <input type="file" id="imageFile" accept="image/*">
+    <br>
+    <img id="previewImage" src="#" alt="Selected Image" style="display:none;" width="224" height="224">
+    <br>
+    <p id="predictionResult"></p>
+
+    <script>
+        document.getElementById("imageFile").addEventListener("change", async function() {
+            const file = this.files[0];
+            if (!file) {
+                console.error("No file selected");
+                return;
+            }
+
+            // Show the selected image
+            const previewImage = document.getElementById("previewImage");
+            previewImage.src = URL.createObjectURL(file);
+            previewImage.style.display = "block";
+
+            const formData = new FormData();
+            formData.append("image", file);
+
+            try {
+                const response = await fetch('http://e16a-34-74-108-45.ngrok.io/predict', {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+
+                // Show the prediction result
+                document.getElementById("predictionResult").innerText = `Prediction: ${jsonResponse.prediction}`;
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+    </script>
+</body>
+</html>
