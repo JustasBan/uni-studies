@@ -1,0 +1,32 @@
+[
+    {
+        "borough": "Manhattan",
+        "cuisine": "American ",
+        "name": "Murals On 54/Randolphs'S",
+        "restaurant_id": "40372466"
+    },
+    {
+        "borough": "Manhattan",
+        "cuisine": "Indian",
+        "name": "Gandhi",
+        "restaurant_id": "40381295"
+    },
+    {
+        "borough": "Manhattan",
+        "cuisine": "Pizza/Italian",
+        "name": "Bella Napoli",
+        "restaurant_id": "40393488"
+    },
+    {
+        "borough": "Manhattan",
+        "cuisine": "American ",
+        "name": "B.B. Kings",
+        "restaurant_id": "40704853"
+    },
+    {
+        "borough": "Manhattan",
+        "cuisine": "American ",
+        "name": "West 79Th Street Boat Basin Cafe",
+        "restaurant_id": "40756344"
+    }
+]
