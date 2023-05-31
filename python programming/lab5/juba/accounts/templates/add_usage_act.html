@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Sukurti nurašymo aktą</h2>
+  <p>Pasirenkant sąskaitas, įspausti "ctrl" klavišą!</p>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sukurti</button>
+  </form>
+{% endblock %}

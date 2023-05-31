@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h2>Sakskaitu-fakturu sarasas</h2>
+
+<a href="{% url 'add_product_list' %}">Sukurti tuscia Saskaita-faktura</a>
+{% for product_list in product_lists %}
+<h3>Saskaita {{ product_list.id }}</h3>
+<b>Pirkejas:</b> {{ product_list.buyer_company_name }}<br>
+<b>Pardavejas:</b> {{ product_list.seller_company_name }}<br>
+<i>Sukurta {{ product_list.created_at|date:"Y-m-d H:i" }}</i>
+{% if product_list.products.exists %}
+<table>
+    <thead>
+        <tr>
+            <th>Eil nr.</th>
+            <th>Pavadinimas</th>
+            <th>Mat. vnt.</th>
+            <th>Kiekis</th>
+            <th>Kaina (be PVM) Eur</th>
+            <th>Suma (be PVM) Eur</th>
+            <th>PVM tarifas (%)</th>
+            <th>PVM suma Eur</th>
+            <th>Suma Eur</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in product_list.products.all %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.unit_name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.cost|floatformat:2 }}</td>
+            <td>{{ product.summed_cost_without_vat|floatformat:2 }}</td>
+            <td>{{ product.vat_percentage }}</td>
+            <td>{{ product.vat_amount|floatformat:2 }}</td>
+            <td>{{ product.total_cost_with_vat|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>nera produktu</p>
+{% endif %}
+<a href="{% url 'add_product_to_list' product_list.id %}">Prideti produkta</a> |
+<a href="{% url 'delete_list' product_list.id %}">Istrinti saskaita</a> {% if product_list.products.exists %}|
+<a href="{% url 'download_invoice' product_list.id %}">Atsisiusti PDF</a>{% endif %}
+<hr>
+{% endfor %}
+{% endblock %}

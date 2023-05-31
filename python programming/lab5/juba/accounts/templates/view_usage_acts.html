@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h2>Nurašymo aktai</h2>
+<a href="{% url 'add_usage_act' %}">Sukurti akta</a>
+{% for act_detail in act_details %}
+    <h3>Nurašymo aktas nr. {{ act_detail.act.id }}</h3>
+    <b>Sukurta:</b> {{ act_detail.act.created_at|date:"Y-m-d H:i" }}
+    {% if act_detail.products %}
+    <table>
+        <thead>
+            <tr>
+                <th>Eil nr.</th>
+                <th>Pavadinimas</th>
+                <th>Mat. vnt.</th>
+                <th>Kiekis</th>
+                <th>Kaina</th>
+                <th>Suma su pvm</th>
+                <th>Panaudojimo tikslas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in act_detail.products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.unit_name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.cost_with_vat|floatformat:4 }}</td>
+                <td>{{ product.total_cost_with_vat|floatformat:2 }}</td>
+                <td>{{ product.usage }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><b>Iš viso:</b> {{act_detail.act.total_sum|floatformat:2}}</p>
+    <p><b>Naudoti dokumentai:</b> 
+        {% for product_list in act_detail.product_lists %}
+        <br>{{ product_list.seller_company_name }} PVM s.f Serija 1 Nr. {{ product_list.id }}, Data: {{ product_list.created_at|date:"Y-m-d" }}
+        {% endfor %}
+    </p>
+    {% else %}
+    <p>nera produktu</p>
+    {% endif %}
+    <a href="{% url 'delete_usage_act' act_detail.act.id %}">Ištrinti aktą</a>
+    <a href="{% url 'download_usage_act' act_detail.act.id %}">Atsisiuti aktą</a>
+    <hr>
+{% endfor %}
+{% endblock %}

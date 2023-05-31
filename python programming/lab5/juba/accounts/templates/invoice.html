@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            margin: 1.6cm;
+            font-size: 12px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            padding-top: 100px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        h3 {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+        }
+
+        .invoice-table thead th {
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .invoice-table tbody td {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PVM Saskaita-faktura</h1>
+    <h3>Serija 1 Nr. {{ product_list.id }}</h3>
+    <h3>{{ product_list.created_at|date:"Y-m-d" }}</h3>
+
+    <table>
+        <td>
+            <p>
+                <b>Pirkejas:</b>
+                <p>{{product_list.buyer_company_name}} (Pavadinimas)</p>
+                <p>{{product_list.buyer_address}} (Adresas)</p>
+                <p>{{product_list.buyer_code}} (Pardavejo kodas)</p>
+                <p>{{product_list.buyer_VAT_code}} (PVM kodas)</p>
+            </p>
+        <td>
+            <p>
+                <b>Pardavejas:</b>
+                <p>{{product_list.seller_company_name}} (Pavadinimas)</p>
+                <p>{{product_list.seller_address}} (Adresas)</p>
+                <p>{{product_list.seller_code}} (Pardavejo kodas)</p>
+                <p>{{product_list.seller_VAT_code}} (PVM kodas)</p>
+            </p>
+        </td>
+    </table>
+
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th>Eil nr.</th>
+                <th>Pavadinimas</th>
+                <th>Mat. vnt.</th>
+                <th>Kiekis</th>
+                <th>Kaina (be PVM) Eur</th>
+                <th>Suma (be PVM) Eur</th>
+                <th>PVM tarifas (%)</th>
+                <th>PVM suma Eur</th>
+                <th>Suma Eur</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.unit_name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.cost|floatformat:4 }}</td>
+                <td>{{ product.summed_cost_without_vat|floatformat:2 }}</td>
+                <td>{{ product.vat_percentage }}</td>
+                <td>{{ product.vat_amount|floatformat:2 }}</td>
+                <td>{{ product.total_cost_with_vat|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><b>Suma:</b> {{product_list.total_cost_of_products|floatformat:2}}</p>
+    <p><b>Suma žodžiais:</b> {{product_list.total_cost_of_products_string}}</p>
+    <p><b>Saskaita išraše:</b> {{name}} {{surname}}</p>
+    <p><b>Telefonas pasiteiravimui:</b> +{{phone_number}}</p>
+
+</body>
+
+</html>

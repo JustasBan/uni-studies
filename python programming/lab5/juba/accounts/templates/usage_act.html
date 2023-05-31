@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            margin: 1.6cm;
+            font-size: 12px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            padding-top: 100px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        h3 {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+        }
+
+        .invoice-table thead th {
+            border: 1px solid #000;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .invoice-table tbody td {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MATERIALINIU VERTYBIU NURAŠYMO A K T A S</h1>
+    <h3>Data: {{ usage_act.created_at|date:"Y-m-d" }}</h3>
+    <h3>Nr. {{ usage_act.id }}</h3>
+    <p>
+        Atsakingas darbuotojas, <b>{{name}} {{surname}}</b>, šiuo aktu patvirtina, kad apacioje išvardintos mat. vertybes buvo sunaudotos
+    </p>
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th>Eil nr.</th>
+                <th>Pavadinimas</th>
+                <th>Mat. vnt.</th>
+                <th>Kiekis</th>
+                <th>Kaina</th>
+                <th>Suma su pvm</th>
+                <th>Panaudojimo tikslas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.unit_name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.cost_with_vat|floatformat:2 }}</td>
+                <td>{{ product.total_cost_with_vat|floatformat:2 }}</td>
+                <td>{{ product.usage }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><b>Iš viso:</b> {{usage_act.total_sum|floatformat:2}}
+    <br>
+    <b>Pagal pirkimo dokumentus:</b>
+    {% for product_list in product_lists %}
+    <br>{{ product_list.seller_company_name }} PVM s.f Serija 1 Nr. {{ product_list.id }}, Data: {{ product_list.created_at|date:"Y-m-d" }}
+    {% endfor %}
+    </p>
+
+    <p><b>Darbuotojas</b> {{name}} {{surname}} <br><br> __________________</p>
+</body>
+
+</html>
