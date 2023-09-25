@@ -64,8 +64,7 @@ anukas(Anukas, SenelisSenele) :-
     asmuo(Anukas, vyras, _, _),
     asmuo(SenelisSenele, _, _, _),
     vienas_is_tevu(SenelisSenele, TevasMama),
-    vienas_is_tevu(TevasMama, Anukas),
-    Anukas \= SenelisSenele.    
+    vienas_is_tevu(TevasMama, Anukas).
 
 /* 16. Pavyzdžiai: */
 /*    
@@ -100,8 +99,8 @@ gera_pora(Asmuo1, Asmuo2) :-
 
 /* 42. Pavyzdžiai: */
 /*    
-    gera_pora(jonuke, antanas). = false (jonuke ir jonulis skirtingo amziaus)
-    gera_pora(jonulis, nagliukas). = true (per didelis amziaus skirtumas)
+    gera_pora(jonuke, antanas). = true (jonuke ir antanas panasaus amziaus ir megsta dainuoti)
+    gera_pora(jonulis, nagliukas). = false (per didelis amziaus skirtumas)
     gera_pora(jonulis, inga). = false (jonulis ir inga turi skirtingus pomegius)
 */
     

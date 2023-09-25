@@ -1,0 +1,47 @@
+/* su Anukas \= SenelisSenele.  */  
+Anukas = mariukas,    
+SenelisSenele = petre ;
+Anukas = mariukas,     
+SenelisSenele = petras ;
+2
+
+
+Anukas = nagliukas,   
+SenelisSenele = petre ;
+Anukas = nagliukas,    
+SenelisSenele = petras ;
+2
+
+
+Anukas = jonulis,      
+SenelisSenele = kazlas ;
+Anukas = jonulis,     
+SenelisSenele = kazle ;
+Anukas = jonulis,     
+SenelisSenele = kazys ;
+Anukas = jonulis,
+SenelisSenele = kaziene ;
+4
+
+/* be Anukas \= SenelisSenele.  */  
+Anukas = mariukas,
+SenelisSenele = petre ;
+Anukas = mariukas,
+SenelisSenele = petras ;
+2
+
+Anukas = nagliukas,
+SenelisSenele = petre ;
+Anukas = nagliukas,
+SenelisSenele = petras ;
+2
+
+Anukas = jonulis,
+SenelisSenele = kazlas ;
+Anukas = jonulis,
+SenelisSenele = kazle ;
+Anukas = jonulis,
+SenelisSenele = kazys ;
+Anukas = jonulis,
+SenelisSenele = kaziene ;
+4
