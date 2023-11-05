@@ -1,0 +1,335 @@
+[trace]  ?- galimaNuvaziuoti(marijampole, 
+vilnius, 100).
+   Call: (10) galimaNuvaziuoti(marijampole, vilnius, 100) ? creep
+   
+   --- bandome ieskoti tiesioginio kelio ---
+   Call: (11) kelias(marijampole, vilnius, _57362) ? creep
+
+   --- neradome --- 
+   Fail: (11) kelias(marijampole, vilnius, _57362) ? creep
+   Redo: (10) galimaNuvaziuoti(marijampole, vilnius, 100) ? creep
+   
+   -- ieskome keliu nuo marijampoles -- 
+   Call: (11) kelias(marijampole, _59638, 
+_59640) ? creep
+
+    --- randame prienus ir jie atitnka salyga ---
+   Exit: (11) kelias(marijampole, prienai, 30) ? creep
+   Call: (11) 100>=30 ? creep
+   Exit: (11) 100>=30 ? creep
+
+   --- ieskome kelio nuo prienu iki vilniaus ---
+   Call: (11) galimaNuvaziuoti(prienai, vilnius, 100) ? creep
+   Call: (12) kelias(prienai, vilnius, _63424) ? creep
+
+   --- neras tiesioginio kelio nuo prienu iki vilniaus ---
+   Fail: (12) kelias(prienai, vilnius, _63424) ? creep
+   Redo: (11) galimaNuvaziuoti(prienai, vilnius, 100) ? creep
+
+   --- ieskos keliu nuo prienu per tarpinius ---
+   Call: (12) kelias(prienai, _65700, _65702) ? creep
+
+   --- atras kelia prienai - birstonas, atitinka salyga ---
+   Exit: (12) kelias(prienai, birstonas, 5) ? creep
+   Call: (12) 100>=5 ? creep
+   Exit: (12) 100>=5 ? creep
+
+   --- ieskos tieioginio kelio birstonas - vilnius ir neras ---
+   Call: (12) galimaNuvaziuoti(birstonas, 
+vilnius, 100) ? creep
+   Call: (13) kelias(birstonas, vilnius, _69486) ? creep
+   Fail: (13) kelias(birstonas, vilnius, _69486) ? creep
+   Redo: (12) galimaNuvaziuoti(birstonas, 
+vilnius, 100) ? creep
+ 
+   --- ieskos keliu nuo birstono ---
+   Call: (13) kelias(birstonas, _71762, _71764) ? creep
+   Fail: (13) kelias(birstonas, _71762, _71764) ? creep
+
+   --- neras keliu nuo birstono jokiu, tai iki vilniaus neimanoma per birstono ---
+   Fail: (12) galimaNuvaziuoti(birstonas, 
+vilnius, 100) ? creep
+
+    --- backtrack'inam iki prienu ir ieskom kitu keliu ---
+   Redo: (12) kelias(prienai, _65700, _65702) ? creep
+
+   --- randam per trakus ir patenkina salyga ---
+   Exit: (12) kelias(prienai, trakai, 60) 
+? creep
+   Call: (12) 100>=60 ? creep
+   Exit: (12) 100>=60 ? creep
+   Call: (12) galimaNuvaziuoti(trakai, vilnius, 100) ? creep
+   Call: (13) kelias(trakai, vilnius, _77822) ? creep
+   Exit: (13) kelias(trakai, vilnius, 20) 
+? creep
+   Call: (13) 100>=20 ? creep
+   Exit: (13) 100>=20 ? creep
+   Exit: (12) galimaNuvaziuoti(trakai, vilnius, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(prienai, vilnius, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, vilnius, 100) ? creep
+true .
+
+
+
+
+
+
+
+
+
+[trace]  ?- galimaNuvaziuoti(marijampole, MiestasY, 100). 
+   Call: (10) galimaNuvaziuoti(marijampole, _776, 100) ? creep
+   Call: (11) kelias(marijampole, _776, _1982) ? creep
+   Exit: (11) kelias(marijampole, prienai, 30) ? creep
+   Call: (11) 100>=30 ? creep
+   Exit: (11) 100>=30 ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, prienai, 100) ? creep
+MiestasY = prienai ;
+   Redo: (11) kelias(marijampole, _776, _1982) ? creep
+   Exit: (11) kelias(marijampole, kaunas, 60) ? creep
+   Call: (11) 100>=60 ? creep
+   Exit: (11) 100>=60 ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, kaunas, 100) ? creep
+MiestasY = kaunas ;
+   Redo: (10) galimaNuvaziuoti(marijampole, _776, 100) ? creep
+   Call: (11) kelias(marijampole, _12994, _12996) ? creep
+   Exit: (11) kelias(marijampole, prienai, 30) ? creep
+   Call: (11) 100>=30 ? creep
+   Exit: (11) 100>=30 ? creep
+   Call: (11) galimaNuvaziuoti(prienai, _776, 100) ? creep
+   Call: (12) kelias(prienai, _776, _16780) ? creep
+   Exit: (12) kelias(prienai, birstonas, 5) ? creep
+   Call: (12) 100>=5 ? creep
+   Exit: (12) 100>=5 ? creep
+   Exit: (11) galimaNuvaziuoti(prienai, birstonas, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, birstonas, 100) ? creep
+MiestasY = birstonas ;
+   Redo: (12) kelias(prienai, _776, _16780) ? creep
+   Exit: (12) kelias(prienai, trakai, 60) ? creep
+   Call: (12) 100>=60 ? creep
+   Exit: (12) 100>=60 ? creep
+   Exit: (11) galimaNuvaziuoti(prienai, trakai, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, trakai, 100) ? creep
+MiestasY = trakai ;
+   Redo: (11) galimaNuvaziuoti(prienai, _776, 100) ? creep
+   Call: (12) kelias(prienai, _29308, _29310) ? creep
+   Exit: (12) kelias(prienai, birstonas, 5) ? creep
+   Call: (12) 100>=5 ? creep
+   Exit: (12) 100>=5 ? creep
+   Call: (12) galimaNuvaziuoti(birstonas, _776, 100) ? creep
+   Call: (13) kelias(birstonas, _776, _33094) ? creep
+   Fail: (13) kelias(birstonas, _776, _33094) ? creep
+   Redo: (12) galimaNuvaziuoti(birstonas, _776, 100) ? creep
+   Call: (13) kelias(birstonas, _35370, _35372) ? creep
+   Fail: (13) kelias(birstonas, _35370, _35372) ? creep
+   Fail: (12) galimaNuvaziuoti(birstonas, _776, 100) ? creep
+   Redo: (12) kelias(prienai, _29308, _29310) ? creep
+   Exit: (12) kelias(prienai, trakai, 60) ? creep
+   Call: (12) 100>=60 ? creep
+   Exit: (12) 100>=60 ? creep
+   Call: (12) galimaNuvaziuoti(trakai, _776, 100) ? creep
+   Call: (13) kelias(trakai, _776, _41430) ? creep
+   Exit: (13) kelias(trakai, vilnius, 20) ? creep
+   Call: (13) 100>=20 ? creep
+   Exit: (13) 100>=20 ? creep
+   Exit: (12) galimaNuvaziuoti(trakai, vilnius, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(prienai, vilnius, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, vilnius, 100) ? creep
+MiestasY = vilnius ;
+   Redo: (12) galimaNuvaziuoti(trakai, _776, 100) ? creep
+   Call: (13) kelias(trakai, _48832, _48834) ? creep
+   Exit: (13) kelias(trakai, vilnius, 20) ? creep
+   Call: (13) 100>=20 ? creep
+   Exit: (13) 100>=20 ? creep
+   Call: (13) galimaNuvaziuoti(vilnius, _776, 100) ? creep
+   Call: (14) kelias(vilnius, _776, _52618) ? creep
+   Fail: (14) kelias(vilnius, _776, _52618) ? creep
+   Redo: (13) galimaNuvaziuoti(vilnius, _776, 100) ? creep
+   Call: (14) kelias(vilnius, _54894, _54896) ? creep
+   Fail: (14) kelias(vilnius, _54894, _54896) ? creep
+   Fail: (13) galimaNuvaziuoti(vilnius, _776, 100) ? creep
+   Fail: (12) galimaNuvaziuoti(trakai, _776, 100) ? creep
+   Fail: (11) galimaNuvaziuoti(prienai, _776, 100) ? creep
+   Redo: (11) kelias(marijampole, _12994, _12996) ? creep
+   Exit: (11) kelias(marijampole, kaunas, 60) ? creep
+   Call: (11) 100>=60 ? creep
+   Exit: (11) 100>=60 ? creep
+   Call: (11) galimaNuvaziuoti(kaunas, _776, 100) ? creep
+   Call: (12) kelias(kaunas, _776, _62470) ? creep
+   Exit: (12) kelias(kaunas, raseiniai, 50) ? creep
+   Call: (12) 100>=50 ? creep
+   Exit: (12) 100>=50 ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, raseiniai, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, raseiniai, 100) ? creep
+MiestasY = raseiniai ;
+   Redo: (12) kelias(kaunas, _776, _62470) ? creep
+   Exit: (12) kelias(kaunas, prienai, 35) ? creep
+   Call: (12) 100>=35 ? creep
+   Exit: (12) 100>=35 ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, prienai, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, prienai, 100) ? creep
+MiestasY = prienai ;
+   Redo: (12) kelias(kaunas, _776, _62470) ? creep
+   Exit: (12) kelias(kaunas, vilnius, 120) ? creep
+   Call: (12) 100>=120 ? creep
+   Fail: (12) 100>=120 ? creep
+   Redo: (11) galimaNuvaziuoti(kaunas, _776, 100) ? creep
+   Call: (12) kelias(kaunas, _78022, _78024) ? creep
+   Exit: (12) kelias(kaunas, raseiniai, 50) ? creep
+   Call: (12) 100>=50 ? creep
+   Exit: (12) 100>=50 ? creep
+   Call: (12) galimaNuvaziuoti(raseiniai, _776, 100) ? creep
+   Call: (13) kelias(raseiniai, _776, _81808) ? creep
+   Exit: (13) kelias(raseiniai, siauliai, 70) ? creep
+   Call: (13) 100>=70 ? creep
+   Exit: (13) 100>=70 ? creep
+   Exit: (12) galimaNuvaziuoti(raseiniai, siauliai, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, siauliai, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, siauliai, 100) ? creep
+MiestasY = siauliai ;
+   Redo: (12) galimaNuvaziuoti(raseiniai, _776, 100) ? creep
+   Call: (13) kelias(raseiniai, _89210, _89212) ? creep
+   Exit: (13) kelias(raseiniai, siauliai, 70) ? creep
+   Call: (13) 100>=70 ? creep
+   Exit: (13) 100>=70 ? creep
+   Call: (13) galimaNuvaziuoti(siauliai, _776, 100) ? creep
+   Call: (14) kelias(siauliai, _776, _92996) ? creep
+   Exit: (14) kelias(siauliai, vilnius, 200) ? creep
+   Call: (14) 100>=200 ? creep
+   Fail: (14) 100>=200 ? creep
+   Redo: (14) kelias(siauliai, _776, _92996) ? creep
+   Exit: (14) kelias(siauliai, rekyva, 2) ? creep
+   Call: (14) 100>=2 ? creep
+   Exit: (14) 100>=2 ? creep
+   Exit: (13) galimaNuvaziuoti(siauliai, rekyva, 100) ? creep
+   Exit: (12) galimaNuvaziuoti(raseiniai, rekyva, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, rekyva, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, rekyva, 100) ? creep
+MiestasY = rekyva ;
+   Redo: (14) kelias(siauliai, _776, _92996) ? creep
+   Exit: (14) kelias(siauliai, pamusis, 30) ? creep
+   Call: (14) 100>=30 ? creep
+   Exit: (14) 100>=30 ? creep
+   Exit: (13) galimaNuvaziuoti(siauliai, pamusis, 100) ? creep
+   Exit: (12) galimaNuvaziuoti(raseiniai, pamusis, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, pamusis, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, pamusis, 100) ? creep
+MiestasY = pamusis ;
+   Redo: (13) galimaNuvaziuoti(siauliai, _776, 100) ? creep
+   Call: (14) kelias(siauliai, _111580, _111582) ? creep
+   Exit: (14) kelias(siauliai, vilnius, 200) ? creep
+   Call: (14) 100>=200 ? creep
+   Fail: (14) 100>=200 ? creep
+   Redo: (14) kelias(siauliai, _111580, _111582) ? creep
+   Exit: (14) kelias(siauliai, rekyva, 2) ? creep
+   Call: (14) 100>=2 ? creep
+   Exit: (14) 100>=2 ? creep
+   Call: (14) galimaNuvaziuoti(rekyva, _776, 100) ? creep
+   Call: (15) kelias(rekyva, _776, _118390) ? creep
+   Exit: (15) kelias(rekyva, pamusis, 40) ? creep
+   Call: (15) 100>=40 ? creep
+   Exit: (15) 100>=40 ? creep
+   Exit: (14) galimaNuvaziuoti(rekyva, pamusis, 100) ? creep
+   Exit: (13) galimaNuvaziuoti(siauliai, pamusis, 100) ? creep
+   Exit: (12) galimaNuvaziuoti(raseiniai, pamusis, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, pamusis, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, pamusis, 100) ? creep
+MiestasY = pamusis ;
+   Redo: (14) galimaNuvaziuoti(rekyva, _776, 100) ? creep
+   Call: (15) kelias(rekyva, _127308, _127310) ? creep
+   Exit: (15) kelias(rekyva, pamusis, 40) ? creep
+   Call: (15) 100>=40 ? creep
+   Exit: (15) 100>=40 ? creep
+   Call: (15) galimaNuvaziuoti(pamusis, _776, 100) ? creep
+   Call: (16) kelias(pamusis, _776, _131094) ? creep
+   Fail: (16) kelias(pamusis, _776, _131094) ? creep
+   Redo: (15) galimaNuvaziuoti(pamusis, _776, 100) ? creep
+   Call: (16) kelias(pamusis, _133370, _133372) ? creep
+   Fail: (16) kelias(pamusis, _133370, _133372) ? creep
+   Fail: (15) galimaNuvaziuoti(pamusis, _776, 100) ? creep
+   Fail: (14) galimaNuvaziuoti(rekyva, _776, 100) ? creep
+   Redo: (14) kelias(siauliai, _111580, _111582) ? creep
+   Exit: (14) kelias(siauliai, pamusis, 30) ? creep
+   Call: (14) 100>=30 ? creep
+   Exit: (14) 100>=30 ? creep
+   Call: (14) galimaNuvaziuoti(pamusis, _776, 100) ? creep
+   Call: (15) kelias(pamusis, _776, _140188) ? creep
+   Fail: (15) kelias(pamusis, _776, _140188) ? creep
+   Redo: (14) galimaNuvaziuoti(pamusis, _776, 100) ? creep
+   Call: (15) kelias(pamusis, _142464, _142466) ? creep
+   Fail: (15) kelias(pamusis, _142464, _142466) ? creep
+   Fail: (14) galimaNuvaziuoti(pamusis, _776, 100) ? creep
+   Fail: (13) galimaNuvaziuoti(siauliai, _776, 100) ? creep
+   Fail: (12) galimaNuvaziuoti(raseiniai, _776, 100) ? creep
+   Redo: (12) kelias(kaunas, _78022, _78024) ? creep
+   Exit: (12) kelias(kaunas, prienai, 35) ? creep
+   Call: (12) 100>=35 ? creep
+   Exit: (12) 100>=35 ? creep
+   Call: (12) galimaNuvaziuoti(prienai, _776, 100) ? creep
+   Call: (13) kelias(prienai, _776, _150040) ? creep
+   Exit: (13) kelias(prienai, birstonas, 5) ? creep
+   Call: (13) 100>=5 ? creep
+   Exit: (13) 100>=5 ? creep
+   Exit: (12) galimaNuvaziuoti(prienai, birstonas, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, birstonas, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, birstonas, 100) ? creep
+MiestasY = birstonas ;
+   Redo: (13) kelias(prienai, _776, _150040) ? creep
+   Exit: (13) kelias(prienai, trakai, 60) ? creep
+   Call: (13) 100>=60 ? creep
+   Exit: (13) 100>=60 ? creep
+   Exit: (12) galimaNuvaziuoti(prienai, trakai, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, trakai, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, trakai, 100) ? creep
+MiestasY = trakai ;
+   Redo: (12) galimaNuvaziuoti(prienai, _776, 100) ? creep
+   Call: (13) kelias(prienai, _164084, _164086) ? creep
+   Exit: (13) kelias(prienai, birstonas, 5) ? creep
+   Call: (13) 100>=5 ? creep
+   Exit: (13) 100>=5 ? creep
+   Call: (13) galimaNuvaziuoti(birstonas, _776, 100) ? creep
+   Call: (14) kelias(birstonas, _776, _167870) ? creep
+   Fail: (14) kelias(birstonas, _776, _167870) ? creep
+   Redo: (13) galimaNuvaziuoti(birstonas, _776, 100) ? creep
+   Call: (14) kelias(birstonas, _170146, _170148) ? creep
+   Fail: (14) kelias(birstonas, _170146, _170148) ? creep
+   Fail: (13) galimaNuvaziuoti(birstonas, _776, 100) ? creep
+   Redo: (13) kelias(prienai, _164084, _164086) ? creep
+   Exit: (13) kelias(prienai, trakai, 60) ? creep
+   Call: (13) 100>=60 ? creep
+   Exit: (13) 100>=60 ? creep
+   Call: (13) galimaNuvaziuoti(trakai, _776, 100) ? creep
+   Call: (14) kelias(trakai, _776, _176206) ? creep
+   Exit: (14) kelias(trakai, vilnius, 20) ? creep
+   Call: (14) 100>=20 ? creep
+   Exit: (14) 100>=20 ? creep
+   Exit: (13) galimaNuvaziuoti(trakai, vilnius, 100) ? creep
+   Exit: (12) galimaNuvaziuoti(prienai, vilnius, 100) ? creep
+   Exit: (11) galimaNuvaziuoti(kaunas, vilnius, 100) ? creep
+   Exit: (10) galimaNuvaziuoti(marijampole, vilnius, 100) ? creep
+MiestasY = vilnius ;
+   Redo: (13) galimaNuvaziuoti(trakai, _776, 100) ? creep
+   Call: (14) kelias(trakai, _184366, _184368) ? creep
+   Exit: (14) kelias(trakai, vilnius, 20) ? creep
+   Call: (14) 100>=20 ? creep
+   Exit: (14) 100>=20 ? creep
+   Call: (14) galimaNuvaziuoti(vilnius, _776, 100) ? creep
+   Call: (15) kelias(vilnius, _776, _188152) ? creep
+   Fail: (15) kelias(vilnius, _776, _188152) ? creep
+   Redo: (14) galimaNuvaziuoti(vilnius, _776, 100) ? creep
+   Call: (15) kelias(vilnius, _190428, _190430) ? creep
+   Fail: (15) kelias(vilnius, _190428, _190430) ? creep
+   Fail: (14) galimaNuvaziuoti(vilnius, _776, 100) ? creep
+   Fail: (13) galimaNuvaziuoti(trakai, _776, 100) ? creep
+   Fail: (12) galimaNuvaziuoti(prienai, _776, 100) ? creep
+   Redo: (12) kelias(kaunas, _78022, _78024) ? creep
+   Exit: (12) kelias(kaunas, vilnius, 120) ? creep
+   Call: (12) 100>=120 ? creep
+   Fail: (12) 100>=120 ? creep
+   Fail: (11) galimaNuvaziuoti(kaunas, _776, 100) ? creep
+   Fail: (10) galimaNuvaziuoti(marijampole, _776, 100) ? creep
+false.
+
+
+
+
