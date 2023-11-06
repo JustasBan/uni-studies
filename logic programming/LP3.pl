@@ -16,15 +16,15 @@ R = [10,2,14,8,1,15].
 */
 
 /* tusciam sarasui idedame K */
-iterpti([], K, [K]) :- !.
+%iterpti([], K, [K]) :- !.
 
 /* sarasui, kurio pirmas elementas didesnis uz K, idedame pradzioje */
 iterpti([Priekis_S|Galas_S], K, [K,Priekis_S|Galas_S]) :- 
-    K < Priekis_S, !.
+    K < Priekis_S.
 
 /* sarasui, kurio pirmas elementas mazesnis ir antras elementas didenis uz K, idedame tarp tu elementu, tuos elementus idedame i R*/
 iterpti([Priekis1_s,Priekis2_S|Galas_S], K, [Priekis1_s,K,Priekis2_S|Galas_S]) :- 
-    K > Priekis1_s, K < Priekis2_S, !.
+    K > Priekis1_s, K < Priekis2_S.
 
 /* tesiame darba */
 iterpti([Priekis_S|Galas_S], K, [Priekis_S|Galas_R]) :-	
