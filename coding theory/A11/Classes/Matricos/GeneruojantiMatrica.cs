@@ -32,8 +32,11 @@ public class GeneruojantiMatrica : Matrica
         }
     }
 
-    public GeneruojantiMatrica()
+    public GeneruojantiMatrica(int stulpeliaiN, int eilutesK)
     {
+        Stulpeliai_n = stulpeliaiN;
+        Eilutes_k = eilutesK;
+        Duomenys = new int[eilutesK, stulpeliaiN];
     }
 
     public int[,] getA()

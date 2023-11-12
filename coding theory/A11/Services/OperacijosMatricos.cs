@@ -35,4 +35,23 @@ public static class OperacijosMatricos
             Stulpeliai_n = stulpeliai1 + stulpeliai2
         };
     }
+
+    public static int[] Daugyba(Matrica A, int[] B)
+    {
+        int k = A.Eilutes_k;
+        int n = A.Stulpeliai_n;
+
+        int[] rezultatas = new int[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            rezultatas[i] = 0;
+            for (int j = 0; j < k; j++)
+            {
+                rezultatas[i] ^= B[j] * A.Duomenys[j, i];
+            }
+        }
+
+        return rezultatas;
+    }
 }
