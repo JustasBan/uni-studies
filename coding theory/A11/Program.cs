@@ -38,7 +38,7 @@ switch(input)
         Console.WriteLine("Suveskite standartinio pavidalo generuojancia matrica:");
         for (var i = 0; i < eiltutes; i++)
         {
-            Console.WriteLine($"Iveskite {stulpeliai} {i}-os eilutes elementus...");
+            Console.WriteLine($"Iveskite {stulpeliai} {i+1}-os eilutes elementus...");
 
             string line;
             do
@@ -71,35 +71,64 @@ Console.WriteLine();
 
 /* vartotojas iveda zinute */
 
-string zinute_input;
+string zinuteInput;
 do
 {
     Console.WriteLine($"Iveskite ilgio {eiltutes} zinute...");
-    zinute_input = Console.ReadLine();
-    if (zinute_input.Length != eiltutes)
+    zinuteInput = Console.ReadLine();
+    if (zinuteInput.Length != eiltutes)
     {
-        Console.WriteLine($"Ivesta {zinute_input.Length} elementu, o turetu buti {eiltutes}");
+        Console.WriteLine($"Ivesta {zinuteInput.Length} elementu, o turetu buti {eiltutes}");
     }
-} while (zinute_input.Length != eiltutes);
+} while (zinuteInput.Length != eiltutes);
 
 
-var zinute_vektorius = zinute_input.Select(c => c - '0').ToArray();
+var zinuteVektorius = zinuteInput.Select(c => c - '0').ToArray();
 
 /* zinutes uzkodavimas */
-var kodas = new Kodavimas(generuojantiMatrica, zinute_vektorius);
+var kodas = new Kodavimas(generuojantiMatrica, zinuteVektorius);
 
 Console.WriteLine("Uzkoduota zinute:");
-Console.WriteLine(string.Join(',', kodas.Uzkoduotas_vektorius));
+Console.WriteLine(string.Join(',', kodas.UzkoduotasVektorius));
 Console.WriteLine();
 
 /* vartotojas iveda klaidos tikimybe ir su ja siunciama kanalu*/
 Console.WriteLine("Iveskite klaidos tikimybe (su tasku, pvz.: 0.1)...");
-var klaidos_tikimybe = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
+var klaidosTikimybe = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-var kanalas = new Kanalas(klaidos_tikimybe, kodas.Uzkoduotas_vektorius);
+Console.WriteLine("Siunciama zinute kanalu...");
+Random random = new();
+var kanalas = new Kanalas(klaidosTikimybe, kodas.UzkoduotasVektorius, random);
 kanalas.Siusti();
+Console.WriteLine();
 
 Console.WriteLine("Is kanalo gauta zinute:");
 Console.WriteLine(string.Join(", ", kanalas.Gauta_zinute));
+Console.WriteLine();
 
+/* Vartotojas pries dekodavima gali pakeisti gauta zinute */
+Console.WriteLine("Ar norite pakeisti gauta zinute?");
+Console.WriteLine("1 - taip, keisti 2 - ne, tesiame dekodavima...");
 
+var dekoduojamaZinute = kanalas.Gauta_zinute;
+
+input = Console.ReadLine();
+
+if(input == "1")
+    do
+    {
+        Console.WriteLine($"Iveskite nauja ilgio {stulpeliai} zinute...");
+        input = Console.ReadLine();
+
+        if (input!.Length != stulpeliai)
+        {
+            Console.WriteLine($"Ivesta {input.Length} elementu, o turetu buti {stulpeliai}");
+        }
+        else
+        {
+            dekoduojamaZinute = input.Select(c => c - '0').ToArray();
+        }
+    } while (input.Length != stulpeliai);
+
+/* zinutes dekodavimas */
+var dekodavimas = new Dekodavimas(generuojantiMatrica, k: eiltutes, n: stulpeliai);
