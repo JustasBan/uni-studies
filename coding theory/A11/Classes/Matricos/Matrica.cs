@@ -2,15 +2,19 @@
 
 public class Matrica
 {
-    public int Stulpeliai_n { get; set; }
-    public int Eilutes_k { get; set; }
+    // matricos parametrai
+    public int StulpeliaiN { get; set; }
+    public int EilutesK { get; set; }
+
+    // pati matrica
     public int[,] Duomenys { get; set; }
 
+    // matricos isvedimas i ekrana
     public void Print()
     {
-        for (var i = 0; i < Eilutes_k; i++)
+        for (var i = 0; i < EilutesK; i++)
         {
-            for (var j = 0; j < Stulpeliai_n; j++)
+            for (var j = 0; j < StulpeliaiN; j++)
             {
                 Console.Write(Duomenys[i, j] + " ");
             }
@@ -18,31 +22,41 @@ public class Matrica
         }
     }
 
+    // matricos transponavimas
     public void Transponuoti()
     {
-        var transposed = new int[Stulpeliai_n, Eilutes_k];
+        // transponuotos matricos parametru pakeitimas
+        var transposed = new int[StulpeliaiN, EilutesK];
 
-        for (var i = 0; i < Eilutes_k; i++)
+        // transponavimas,
+        // iteruojama per kiekviena matricos eilute
+        for (var i = 0; i < EilutesK; i++)
         {
-            for (var j = 0; j < Stulpeliai_n; j++)
+            // iteruojama per kiekviena matricos stulpeli
+            for (var j = 0; j < StulpeliaiN; j++)
             {
+                // stulpeliai tampa eilutemis
                 transposed[j, i] = Duomenys[i, j];
             }
         }
 
+        // transponuotos matricos parametru pakeitimas
         Duomenys = transposed;
-        (Stulpeliai_n, Eilutes_k) = (Eilutes_k, Stulpeliai_n);
+        (StulpeliaiN, EilutesK) = (EilutesK, StulpeliaiN);
     }
 
+    // matricos pavertimas vienetine
     public void Vienetine()
     {
-        Duomenys = new int[Eilutes_k, Eilutes_k];
-        Stulpeliai_n = Eilutes_k;
+        // vienetine matrica yra k*k
+        Duomenys = new int[EilutesK, EilutesK];
+        StulpeliaiN = EilutesK;
 
-        for (var i = 0; i < Eilutes_k; i++)
+        for (var i = 0; i < EilutesK; i++)
         {
-            for (var j = 0; j < Eilutes_k; j++)
+            for (var j = 0; j < EilutesK; j++)
             {
+                // vienetine matrica turi 1 tik sutapus eilutei ir stulpeliui, kitur 0
                 Duomenys[i, j] = 0;
                 if(i == j) Duomenys[i, j] = 1;
             }

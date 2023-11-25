@@ -1,30 +1,42 @@
-﻿using A11.Services;
-
-namespace A11.Classes.Matricos;
+﻿namespace A11.Classes.Matricos;
 
 public class KontrolineMatrica : Matrica
 {
+    // konsruktorius, kuris priima generuojancia matrica
+    // ir pagal ja inicializuoja kontroline matrica
     public KontrolineMatrica(GeneruojantiMatrica generuojantiMatrica)
     {
+        // generuojancios matricos desne (ne vienetine) puse.
+        // paverciama atskira matrica
         Matrica dalisA = new()
         {
-            Duomenys = generuojantiMatrica.getA(),
-            Stulpeliai_n = generuojantiMatrica.Stulpeliai_n - generuojantiMatrica.Eilutes_k,
-            Eilutes_k = generuojantiMatrica.Eilutes_k
+            Duomenys = generuojantiMatrica.IsgautiA(),
+
+            // kontrolines matricos parametru skaiciavimas
+            StulpeliaiN = generuojantiMatrica.StulpeliaiN - generuojantiMatrica.EilutesK,
+            EilutesK = generuojantiMatrica.EilutesK
         };
 
+        // transponuojama desne (ne vienetine) puse,
+        // nes dirbama su standartiniu pavidalu
         dalisA.Transponuoti();
 
-        Stulpeliai_n = generuojantiMatrica.Stulpeliai_n;
-        Eilutes_k = dalisA.Eilutes_k;
-        Duomenys = new int[Eilutes_k,Stulpeliai_n];
+        // kontrolines matricos parametru skaiciavimas
+        StulpeliaiN = generuojantiMatrica.StulpeliaiN;
+        EilutesK = dalisA.EilutesK;
+        Duomenys = new int[EilutesK,StulpeliaiN];
 
+        // generuojancios matricos desne (vienetine) puse.
+        // paverciama atskira matrica
         Matrica dalisVienetine = new()
         {
-            Eilutes_k = generuojantiMatrica.Stulpeliai_n-generuojantiMatrica.Eilutes_k
+            // vienetinei matricai reikia tik k parametro, nes ji k*k
+            EilutesK = generuojantiMatrica.StulpeliaiN-generuojantiMatrica.EilutesK
         };
         dalisVienetine.Vienetine();
 
+        // suliejama vienetine puse ir transponuota kaire (ne vienetine) puse
+        // i viena matrica
         Duomenys = OperacijosMatricos.Suliejimas(dalisA, dalisVienetine).Duomenys;
     }
 }

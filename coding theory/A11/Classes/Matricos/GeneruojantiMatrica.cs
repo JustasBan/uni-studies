@@ -2,17 +2,23 @@
 
 public class GeneruojantiMatrica : Matrica
 {
+    // konstruktorius, skirtas atsitiktiniam generuojancios matricos sugeneravimui ir inicializavimui
+    // paima n ir k parametrus ir ar reikia atsitiktinai sugeneruoti matrica
     public GeneruojantiMatrica(int stulpeliaiN, int eilutesK, bool generateRandomly)
     {
-        var random = new Random();
+        // n ir k parametru inicializacija
+        StulpeliaiN = stulpeliaiN;
+        EilutesK = eilutesK;
 
-        Stulpeliai_n = stulpeliaiN;
-        Eilutes_k = eilutesK;
-
+        // matricos inicializacija
         Duomenys = new int[eilutesK, stulpeliaiN];
 
+        // atsitiktinai sugeneruojama matrica, pasirenkant varotojui
         if (generateRandomly)
         {
+            var random = new Random();
+
+            // atsitiktinai sugeneruojamas skaicius 0 arba 1 kiekvienam matricos elementui
             for (var i = 0; i < eilutesK; i++)
             {
                 for (var j = 0; j < stulpeliaiN; j++)
@@ -22,6 +28,8 @@ public class GeneruojantiMatrica : Matrica
             }
         }
 
+        // generuojancios matricos kaire puse paverciama vienetine,
+        // nes dirbama tik su standartiniu pavidalu
         for (var i = 0; i < eilutesK; i++)
         {
             for (var j = 0; j < eilutesK; j++)
@@ -32,25 +40,32 @@ public class GeneruojantiMatrica : Matrica
         }
     }
 
+    // konstruktorius, skirtas vartotojo suvestai matricai inicializuoti
+    // paima n ir k parametrus
     public GeneruojantiMatrica(int stulpeliaiN, int eilutesK)
     {
-        Stulpeliai_n = stulpeliaiN;
-        Eilutes_k = eilutesK;
+        StulpeliaiN = stulpeliaiN;
+        EilutesK = eilutesK;
         Duomenys = new int[eilutesK, stulpeliaiN];
     }
 
-    public int[,] getA()
+    // grazina generuojancios matricos desne (ne vienetine) puse,
+    // skirta kontrolines matricos generavimui
+    public int[,] IsgautiA()
     {
-        var A = new int[Eilutes_k, Stulpeliai_n-Eilutes_k];
+        // desnes puses matricos parametrai
+        var desnePuse = new int[EilutesK, StulpeliaiN-EilutesK];
 
-        for (var i = 0; i < Eilutes_k; i++)
+        // isgaunama desne (ne vienetine) puse
+        for (var i = 0; i < EilutesK; i++)
         {
-            for (var j = 0; j < Stulpeliai_n-Eilutes_k; j++)
+            // isgaunama iki ne vienetines dalies pabaigos
+            for (var j = 0; j < StulpeliaiN-EilutesK; j++)
             {
-                A[i, j] = Duomenys[i, j+Eilutes_k];
+                desnePuse[i, j] = Duomenys[i, j+EilutesK];
             }
         }
 
-        return A;
+        return desnePuse;
     }
 }

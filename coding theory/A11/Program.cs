@@ -1,60 +1,67 @@
 ﻿using System.Globalization;
 using A11.Classes;
 
-int stulpeliai, eiltutes;
+int stulpeliaiN, eilutesK;
 
 do {
-    /* vartotojas suveda n ir k */
+    // vartotojas suveda n ir k
     Console.WriteLine("Iveskite n... ");
-    stulpeliai = Convert.ToInt32(Console.ReadLine());
+    stulpeliaiN = Convert.ToInt32(Console.ReadLine());
 
     Console.WriteLine("Iveskite k... ");
-    eiltutes = Convert.ToInt32(Console.ReadLine());
+    eilutesK = Convert.ToInt32(Console.ReadLine());
 
-    if (stulpeliai <= eiltutes)
+    // tikranama ar validus ivestis i console
+    if (stulpeliaiN <= eilutesK)
     {
-        Console.WriteLine("n turi buti didesnis uz k");
+        Console.WriteLine("n turi buti didesnis uz k. Pakartokite.");
     }
-} while (stulpeliai <= eiltutes);
+} while (stulpeliaiN <= eilutesK);
 
-/* vartotojas pasirenka ar nori gauti matrica atsitiktinai ar suvesti pats */
+// vartotojas pasirenka ar nori gauti matrica atsitiktinai ar suvesti pats
 Console.WriteLine("1 - generuojant matrica sukriama atsitiktinai\n2 - generuojancia matrica suvedade Jus...");
-
 var input = Console.ReadLine();
+
 GeneruojantiMatrica generuojantiMatrica = null;
 
 switch(input)
 {
     // atsitiktinai gaunama matrica
     case "1":
-        generuojantiMatrica = new GeneruojantiMatrica(stulpeliai, eiltutes, true);
+        generuojantiMatrica = new GeneruojantiMatrica(stulpeliaiN, eilutesK, true);
+
         Console.WriteLine("Atsitiktinai sugeneruota generuojanti matrica:");
         generuojantiMatrica.Print();
+
         break;
 
-    // vartotojas suveda generuoajncia matrica
+    // vartotojas suveda generuoajncia matrica, po viena eilute
     case "2":
-        generuojantiMatrica = new GeneruojantiMatrica(stulpeliai, eiltutes);
-        Console.WriteLine("Suveskite standartinio pavidalo generuojancia matrica:");
-        for (var i = 0; i < eiltutes; i++)
-        {
-            Console.WriteLine($"Iveskite {stulpeliai} {i+1}-os eilutes elementus...");
+        generuojantiMatrica = new GeneruojantiMatrica(stulpeliaiN, eilutesK);
 
-            string line;
+        Console.WriteLine("Suveskite standartinio pavidalo generuojancia matrica:");
+
+        for (var i = 0; i < eilutesK; i++)
+        {
+            Console.WriteLine($"Iveskite {stulpeliaiN} {i+1}-os eilutes elementus...");
+
+            string eilute;
             do
             {
-                line = Console.ReadLine();
-                if (line.Length != stulpeliai)
+                eilute = Console.ReadLine();
+
+                // tikrinama ar validus ivestis i console
+                if (eilute.Length != stulpeliaiN)
                 {
-                    Console.WriteLine($"Ivesta {line.Length} elementu, o turetu buti {stulpeliai}");
+                    Console.WriteLine($"Ivesta {eilute.Length} elementu, o turetu buti {stulpeliaiN}. Pakartokite.");
                 }
             }
-            while (line.Length != stulpeliai);
+            while (eilute.Length != stulpeliaiN);
 
-            for (var j = 0; j < stulpeliai; j++)
+            for (var j = 0; j < stulpeliaiN; j++)
             {
-                // vartotojo ivesta eilute paverciama i skaicius matricos eiluteje
-                generuojantiMatrica.Duomenys[i, j] = Convert.ToInt32(line[j].ToString());
+                // eilutes paverciamos i skaicius matricoje
+                generuojantiMatrica.Duomenys[i, j] = Convert.ToInt32(eilute[j].ToString());
             }
         }
         Console.WriteLine("Jusu ivesta generuojanti matrica:");
@@ -62,6 +69,7 @@ switch(input)
         break;
 
     default:
+        // blogam pramatetru pasirinkime, programa baigia darba
         Console.WriteLine("Blogas pasirinkimas");
         Environment.Exit(1);
         break;
@@ -69,66 +77,90 @@ switch(input)
 
 Console.WriteLine();
 
-/* vartotojas iveda zinute */
-
+// vartotojas iveda zinute
 string zinuteInput;
 do
 {
-    Console.WriteLine($"Iveskite ilgio {eiltutes} zinute...");
+    Console.WriteLine($"Iveskite ilgio {eilutesK} zinute...");
     zinuteInput = Console.ReadLine();
-    if (zinuteInput.Length != eiltutes)
+
+    // tikrinama ar validus ivestis i console
+    if (zinuteInput.Length != eilutesK)
     {
-        Console.WriteLine($"Ivesta {zinuteInput.Length} elementu, o turetu buti {eiltutes}");
+        Console.WriteLine($"Ivesta {zinuteInput.Length} elementu, o turetu buti {eilutesK}. Pakartokite.");
     }
-} while (zinuteInput.Length != eiltutes);
+} while (zinuteInput.Length != eilutesK);
 
-
+// zinute paverciama i skaicius vektoriuje
 var zinuteVektorius = zinuteInput.Select(c => c - '0').ToArray();
 
-/* zinutes uzkodavimas */
+// zinutes uzkodavimas
 var kodas = new Kodavimas(generuojantiMatrica, zinuteVektorius);
-
 Console.WriteLine("Uzkoduota zinute:");
-Console.WriteLine(string.Join(',', kodas.UzkoduotasVektorius));
+Console.WriteLine(string.Join(", ", kodas.UzkoduotasVektorius));
 Console.WriteLine();
 
-/* vartotojas iveda klaidos tikimybe ir su ja siunciama kanalu*/
+// vartotojas iveda klaidos tikimybe
 Console.WriteLine("Iveskite klaidos tikimybe (su tasku, pvz.: 0.1)...");
 var klaidosTikimybe = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
 
+// zinutes siuntimas kanalu
 Console.WriteLine("Siunciama zinute kanalu...");
 Random random = new();
 var kanalas = new Kanalas(klaidosTikimybe, kodas.UzkoduotasVektorius, random);
 kanalas.Siusti();
+
 Console.WriteLine();
 
 Console.WriteLine("Is kanalo gauta zinute:");
-Console.WriteLine(string.Join(", ", kanalas.Gauta_zinute));
+Console.WriteLine(string.Join(", ", kanalas.GautaZinute));
 Console.WriteLine();
 
-/* Vartotojas pries dekodavima gali pakeisti gauta zinute */
+// Vartotojas pries dekodavima gali pakeisti gauta zinute
 Console.WriteLine("Ar norite pakeisti gauta zinute?");
 Console.WriteLine("1 - taip, keisti 2 - ne, tesiame dekodavima...");
 
-var dekoduojamaZinute = kanalas.Gauta_zinute;
+// zinute is kanalo, kuri galimai turi klaidu
+var dekoduojamaZinute = kanalas.GautaZinute;
 
+// vartotojui leidziama pakeisti zinute is kanalo
 input = Console.ReadLine();
-
 if(input == "1")
     do
     {
-        Console.WriteLine($"Iveskite nauja ilgio {stulpeliai} zinute...");
+        Console.WriteLine($"Iveskite nauja ilgio {stulpeliaiN} zinute...");
         input = Console.ReadLine();
 
-        if (input!.Length != stulpeliai)
+        // tikrinama ar validus ivestis i console
+        if (input!.Length != stulpeliaiN)
         {
-            Console.WriteLine($"Ivesta {input.Length} elementu, o turetu buti {stulpeliai}");
+            Console.WriteLine($"Ivesta {input.Length} elementu, o turetu buti {stulpeliaiN}. Pakartokite.");
         }
         else
         {
+            // zinute paverciama i skaicius vektoriuje
             dekoduojamaZinute = input.Select(c => c - '0').ToArray();
         }
-    } while (input.Length != stulpeliai);
 
-/* zinutes dekodavimas */
-var dekodavimas = new Dekodavimas(generuojantiMatrica, k: eiltutes, n: stulpeliai);
+        // tikrinama ar validus ivestis i console
+    } while (input.Length != stulpeliaiN);
+
+// zinutes dekodavimas, gaunam pataisyta vektoriu
+var dekodavimas = new Dekodavimas(generuojantiMatrica, n: stulpeliaiN);
+var dekoduotaZinute = dekodavimas.DekoduotiStepByStep(dekoduojamaZinute);
+
+Console.WriteLine();
+Console.WriteLine("Dekoduota zinute:");
+Console.WriteLine(string.Join(", ", dekoduotaZinute));
+
+// pataisytu klaidu procento skaiciavimas
+var suma = 0;
+for (var i = 0; i < stulpeliaiN; i++)
+{
+    if (dekoduotaZinute[i] == kodas.UzkoduotasVektorius[i])
+    {
+        suma++;
+    }
+}
+
+Console.WriteLine($"Pataisytu klaidu procentas: {suma / (double) stulpeliaiN * 100}%");
