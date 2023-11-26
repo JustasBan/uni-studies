@@ -14,7 +14,7 @@ public class Kanalas
     }
 
     private double Tikimybe { get; set; }
-    private int[] SiustaZinute { get; set; }
+    public int[] SiustaZinute { get; set; }
     public int[] GautaZinute { get; set; }
 
     // Metodas, kuris atlieka siuntimo operacija, t.y iskraipo pagal tikimybe
@@ -28,8 +28,8 @@ public class Kanalas
         {
             GautaZinute[i] = SiustaZinute[i];
 
-            // jeigu atsitiktinis skaicius yra didesnis uz tikimybe, tada nieko nedarome
-            if (!(Intervalas() < Tikimybe)) continue;
+            // jeigu atsitiktinis skaicius yra ne mazesnis uz tikimybe, tada nieko nedarome
+            if (!(TraukiamasSkaicius() < Tikimybe)) continue;
 
             // jeigu atsitiktinis skaicius yra mazesnis uz tikimybe, tada iskraipome zinute
             GautaZinute[i] = SiustaZinute[i] == 0 ? 1 : 0;
@@ -55,7 +55,7 @@ public class Kanalas
 
     // kadangi c# atsitiktinio skaiciaus generavimas yra [0, 1) intervale,
     // metodas grazina skaiciu is intervalo [0, 1] su 0.000000001 tikslumu
-    private double Intervalas()
+    private double TraukiamasSkaicius()
     {
         const int tikslumas = 1000000000;
         return _random.Next(0, tikslumas + 1) / (double)tikslumas;
