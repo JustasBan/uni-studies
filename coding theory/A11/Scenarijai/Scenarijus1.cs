@@ -93,5 +93,6 @@ public class Scenarijus1
         }
 
         Console.WriteLine($"Originalaus ir dekoduoto vektoriu atitikmuo: {suma / (double) stulpeliaiN * 100}%");
+        Console.WriteLine("Scenarijus 1 baigtas");
     }
 }

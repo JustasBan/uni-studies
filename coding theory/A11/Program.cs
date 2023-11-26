@@ -77,28 +77,48 @@ switch(input)
 }
 
 // vartotojas iveda klaidos tikimybe
-Console.WriteLine("Iveskite klaidos tikimybe (su tasku, pvz.: 0.1)...");
-var klaidosTikimybe = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
+Console.WriteLine("Iveskite klaidos tikimybe (pvz.: 0.1)...");
 
+var klaidosTikimybe = Pernaudojama.ParseDouble(Console.ReadLine()!);
 Console.WriteLine();
 
-// vartotojas pasirenka scenariju
-Console.WriteLine("Kuri scenariju norite paleisti? Galimi: 1, 2");
-input = Console.ReadLine();
-switch (input)
-{
-    case "1":
-        Scenarijus1 scenarijus1 = new();
-        scenarijus1.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
-        break;
-    case "2":
-        Scenarijus2 scenarijus2 = new();
-        scenarijus2.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
-        break;
 
-    default:
-    // blogam pramatetru pasirinkime, programa baigia darba
-    Console.WriteLine("Blogas pasirinkimas");
-    Environment.Exit(1);
-    break;
+string endInput;
+do
+{
+    // vartotojas pasirenka scenariju ir jis vykdomas
+    Console.WriteLine("Kuri scenariju norite paleisti? Galimi: 1, 2, 3");
+    input = Console.ReadLine();
+    switch (input)
+    {
+        case "1":
+            Scenarijus1 scenarijus1 = new();
+            scenarijus1.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
+            break;
+
+        case "2":
+            Scenarijus2 scenarijus2 = new();
+            scenarijus2.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
+            break;
+
+        case "3":
+            Scenarijus3 scenarijus3 = new();
+            scenarijus3.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
+            break;
+
+        default:
+            // blogam scenarijaus pasirinkime, programa baigia darba
+            Console.WriteLine("Blogas pasirinkimas, rinkites is naujo");
+            break;
+    }
+
+    // vartotojas pasirenka ar nori vel rinktis scenariju ar baigti darba
+    Console.WriteLine("\nnorint baigti darba, iveskite 'end', arba bet koki kita simboli ir new line, jei norite vel rinktis scenariju...");
+    endInput = Console.ReadLine();
 }
+while (endInput.ToLower() != "end");
+
+Console.WriteLine("Programa baigia darba");
+Environment.Exit(1);
+
+
