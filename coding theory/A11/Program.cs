@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using A11.Classes;
+using A11.Scenarijai;
 
 int stulpeliaiN, eilutesK;
 
@@ -75,92 +76,29 @@ switch(input)
         break;
 }
 
-Console.WriteLine();
-
-// vartotojas iveda zinute
-string zinuteInput;
-do
-{
-    Console.WriteLine($"Iveskite ilgio {eilutesK} zinute...");
-    zinuteInput = Console.ReadLine();
-
-    // tikrinama ar validus ivestis i console
-    if (zinuteInput.Length != eilutesK)
-    {
-        Console.WriteLine($"Ivesta {zinuteInput.Length} elementu, o turetu buti {eilutesK}. Pakartokite.");
-    }
-} while (zinuteInput.Length != eilutesK);
-
-// zinute paverciama i skaicius vektoriuje
-var zinuteVektorius = zinuteInput.Select(c => c - '0').ToArray();
-
-// zinutes uzkodavimas
-var kodas = new Kodavimas(generuojantiMatrica, zinuteVektorius);
-Console.WriteLine("Uzkoduota zinute:");
-Console.WriteLine(string.Join(", ", kodas.UzkoduotasVektorius));
-Console.WriteLine();
-
 // vartotojas iveda klaidos tikimybe
 Console.WriteLine("Iveskite klaidos tikimybe (su tasku, pvz.: 0.1)...");
 var klaidosTikimybe = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-// zinutes siuntimas kanalu
-Console.WriteLine("Siunciama zinute kanalu...");
-Random random = new();
-var kanalas = new Kanalas(klaidosTikimybe, kodas.UzkoduotasVektorius, random);
-kanalas.Siusti();
-
 Console.WriteLine();
 
-Console.WriteLine("Is kanalo gauta zinute:");
-Console.WriteLine(string.Join(", ", kanalas.GautaZinute));
-Console.WriteLine();
-
-// Vartotojas pries dekodavima gali pakeisti gauta zinute
-Console.WriteLine("Ar norite pakeisti gauta zinute?");
-Console.WriteLine("1 - taip, keisti 2 - ne, tesiame dekodavima...");
-
-// zinute is kanalo, kuri galimai turi klaidu
-var dekoduojamaZinute = kanalas.GautaZinute;
-
-// vartotojui leidziama pakeisti zinute is kanalo
+// vartotojas pasirenka scenariju
+Console.WriteLine("Kuri scenariju norite paleisti? Galimi: 1, 2");
 input = Console.ReadLine();
-if(input == "1")
-    do
-    {
-        Console.WriteLine($"Iveskite nauja ilgio {stulpeliaiN} zinute...");
-        input = Console.ReadLine();
-
-        // tikrinama ar validus ivestis i console
-        if (input!.Length != stulpeliaiN)
-        {
-            Console.WriteLine($"Ivesta {input.Length} elementu, o turetu buti {stulpeliaiN}. Pakartokite.");
-        }
-        else
-        {
-            // zinute paverciama i skaicius vektoriuje
-            dekoduojamaZinute = input.Select(c => c - '0').ToArray();
-        }
-
-        // tikrinama ar validus ivestis i console
-    } while (input.Length != stulpeliaiN);
-
-// zinutes dekodavimas, gaunam pataisyta vektoriu
-var dekodavimas = new Dekodavimas(generuojantiMatrica, n: stulpeliaiN);
-var dekoduotaZinute = dekodavimas.DekoduotiStepByStep(dekoduojamaZinute);
-
-Console.WriteLine();
-Console.WriteLine("Dekoduota zinute:");
-Console.WriteLine(string.Join(", ", dekoduotaZinute));
-
-// pataisytu klaidu procento skaiciavimas
-var suma = 0;
-for (var i = 0; i < stulpeliaiN; i++)
+switch (input)
 {
-    if (dekoduotaZinute[i] == kodas.UzkoduotasVektorius[i])
-    {
-        suma++;
-    }
-}
+    case "1":
+        Scenarijus1 scenarijus1 = new();
+        scenarijus1.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
+        break;
+    case "2":
+        Scenarijus2 scenarijus2 = new();
+        scenarijus2.Vykdyti(generuojantiMatrica, stulpeliaiN, eilutesK, klaidosTikimybe);
+        break;
 
-Console.WriteLine($"Pataisytu klaidu procentas: {suma / (double) stulpeliaiN * 100}%");
+    default:
+    // blogam pramatetru pasirinkime, programa baigia darba
+    Console.WriteLine("Blogas pasirinkimas");
+    Environment.Exit(1);
+    break;
+}

@@ -34,12 +34,10 @@ public class Kanalas
             // jeigu atsitiktinis skaicius yra mazesnis uz tikimybe, tada iskraipome zinute
             GautaZinute[i] = SiustaZinute[i] == 0 ? 1 : 0;
         }
-
-        SuskaiciuotiKlaidas();
     }
 
     // Atspausdina vartotojui kanalo padarytas klaidas ir ju kieki
-    private void SuskaiciuotiKlaidas()
+    public void SuskaiciuotiKlaidas()
     {
         var klaidos = 0;
         for (var i = 0; i < SiustaZinute.Length; i++)
