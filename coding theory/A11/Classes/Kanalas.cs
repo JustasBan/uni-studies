@@ -14,7 +14,7 @@ public class Kanalas
     }
 
     private double Tikimybe { get; set; }
-    public int[] SiustaZinute { get; set; }
+    private int[] SiustaZinute { get; set; }
     public int[] GautaZinute { get; set; }
 
     // Metodas, kuris atlieka siuntimo operacija, t.y iskraipo pagal tikimybe

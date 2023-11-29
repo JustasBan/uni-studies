@@ -20,7 +20,7 @@ namespace A11.Scenarijai
 
             // suskaidomas binary string i vektorius, kuriuos uzkoduojame arba tik suskaidome
             var (uzkoduotiVektoriai, uzpildymai, neKoduotiVektoriai) =
-                Pernaudojama.SuskaidytiBinaryString(generuojantiMatrica, failoTurinys, eilutesK);
+                Pernaudojama.SuskaidytiIrUzkoduoti(generuojantiMatrica, failoTurinys, eilutesK);
 
             // siunciami vektoriai per kanala ir uzkoduotus/neuzkoduotus vektorius
             var (dekoduotiVektoriai, neDekoduotiVektoriai) =

@@ -59,7 +59,7 @@ public static class Pernaudojama
     // suskaido binary string i vektorius, kuriuos uzkoduojame ir vektorius, kuriuos tik siunciam
     // grazina uzkoduotus vektorius, neuzkoduotus vektorius ir uzpildymo nuliais kiekius
     // paima generuojancia matrica, vektorius string formatu ir k reiksmes
-    public static (List<int[]>, List<int>, List<int[]>) SuskaidytiBinaryString(
+    public static (List<int[]>, List<int>, List<int[]>) SuskaidytiIrUzkoduoti(
         Matrica generuojantiMatrica,
         string binaryString, int eilutesK)
     {

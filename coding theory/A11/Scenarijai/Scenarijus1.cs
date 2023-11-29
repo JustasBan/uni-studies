@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using A11.Classes;
 
 namespace A11.Scenarijai;
@@ -29,7 +30,7 @@ public class Scenarijus1
         // zinutes uzkodavimas
         var kodas = new Kodavimas(generuojantiMatrica, zinuteVektorius);
         Console.WriteLine("Uzkoduota zinute:");
-        Console.WriteLine(string.Join(", ", kodas.UzkoduotasVektorius));
+        Console.WriteLine(string.Join("", kodas.UzkoduotasVektorius));
         Console.WriteLine();
 
         // zinutes siuntimas kanalu
@@ -42,7 +43,7 @@ public class Scenarijus1
         Console.WriteLine();
 
         Console.WriteLine("Is kanalo gauta zinute:");
-        Console.WriteLine(string.Join(", ", kanalas.GautaZinute));
+        Console.WriteLine(string.Join("", kanalas.GautaZinute));
         Console.WriteLine();
 
         // Vartotojas pries dekodavima gali pakeisti gauta zinute
@@ -76,11 +77,12 @@ public class Scenarijus1
 
         // zinutes dekodavimas, gaunam pataisyta vektoriu
         var dekodavimas = new Dekodavimas(generuojantiMatrica, n: stulpeliaiN);
+
         var dekoduotaZinute = dekodavimas.DekoduotiStepByStep(dekoduojamaZinute);
 
         Console.WriteLine();
         Console.WriteLine("Dekoduota zinute:");
-        Console.WriteLine(string.Join(", ", dekoduotaZinute));
+        Console.WriteLine(string.Join("", dekoduotaZinute));
 
         // pataisytu klaidu procento skaiciavimas
         var suma = 0;

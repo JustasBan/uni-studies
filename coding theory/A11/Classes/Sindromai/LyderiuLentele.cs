@@ -11,7 +11,6 @@ namespace A11.Classes.Sindromai
             this.n = n;
             KontrolineMatrica = kontrolineMatrica;
             SindromaiSvoriai = new Dictionary<string, int>();
-
             GeneruotiSvoriusSuSindromais();
         }
 
