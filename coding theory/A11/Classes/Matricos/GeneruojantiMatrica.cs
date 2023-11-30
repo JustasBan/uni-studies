@@ -1,4 +1,4 @@
-﻿namespace A11.Classes;
+﻿namespace A11.Classes.Matricos;
 
 public class GeneruojantiMatrica : Matrica
 {

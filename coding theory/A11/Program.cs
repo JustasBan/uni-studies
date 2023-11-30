@@ -1,4 +1,5 @@
 ﻿using A11.Classes;
+using A11.Classes.Matricos;
 using A11.Scenarijai;
 
 int stulpeliaiN, eilutesK;

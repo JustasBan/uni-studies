@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-using System.Globalization;
-using A11.Classes;
+﻿using A11.Classes;
+using A11.Classes.Matricos;
 
 namespace A11.Scenarijai;
 
@@ -95,6 +94,7 @@ public class Scenarijus1
         }
 
         Console.WriteLine($"Originalaus ir dekoduoto vektoriu atitikmuo: {suma / (double) stulpeliaiN * 100}%");
+        Console.WriteLine($"Dekoduota zinute: {string.Join("", dekoduotaZinute.Take(eilutesK).Select(x => x.ToString()))}");
         Console.WriteLine("Scenarijus 1 baigtas");
     }
 }
