@@ -1,0 +1,13 @@
+#include "resource.h"
+
+ID_ICON ICON "sudoku.ico"
+
+ID_MENU MENU
+BEGIN
+    POPUP "Menu"
+    BEGIN
+        MENUITEM "E&xit", ID_EXIT
+        MENUITEM "&About Sudoku", ID_ABOUT
+    END
+END
+

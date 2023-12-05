@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1701814715 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\dlls\main.cpp
+	"main.h"
+	<stdbool.h>
+
+1701812064 c:\users\justas baniulis\desktop\git\uni-studies\windows api\dlls\main.h
+	<windows.h>
+
