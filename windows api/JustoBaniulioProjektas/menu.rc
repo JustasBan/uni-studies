@@ -6,8 +6,8 @@ ID_MENU MENU
 BEGIN
     POPUP "Menu"
     BEGIN
-        MENUITEM "E&xit", ID_EXIT
-        MENUITEM "&About Sudoku", ID_ABOUT
+        MENUITEM "Exit", ID_EXIT
+        MENUITEM "About Sudoku", ID_ABOUT
     END
 END
 

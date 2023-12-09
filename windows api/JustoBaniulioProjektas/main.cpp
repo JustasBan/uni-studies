@@ -25,13 +25,15 @@
 
 typedef BOOL (*LPFN_CHECKSOLUTION)(TCHAR[3][3]);
 
+HBITMAP hBitmapCorrect = NULL;
+HBITMAP hBitmapIncorrect = NULL;
+HWND hwndImageControl = NULL;
+
 HINSTANCE hInst;
 LPFN_CHECKSOLUTION checkSudokuSolution;
 
-/*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 
-/*  Make the class name into a global variable  */
 TCHAR szClassName[] = _T("CodeBlocksWindowsApp");
 
 BOOL readSudokuFromFile(LPCTSTR filePath, CHAR sudoku[3][3])
@@ -43,10 +45,10 @@ BOOL readSudokuFromFile(LPCTSTR filePath, CHAR sudoku[3][3])
         return FALSE;
     }
 
-    CHAR buffer[20]; // Adjusted buffer size to account for newlines and null terminator
+    CHAR buffer[20];
     DWORD bytesRead;
     BOOL readSuccess = ReadFile(hFile, buffer, sizeof(buffer) - 1, &bytesRead, NULL);
-    buffer[bytesRead] = '\0'; // Null-terminate the buffer
+    buffer[bytesRead] = '\0';
 
     if (!readSuccess || bytesRead == 0)
     {
@@ -94,15 +96,14 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
 
     HMENU hMenu = LoadMenu(hInst, MAKEINTRESOURCE(ID_MENU));
 
-    // Load the DLL
     HINSTANCE hDll = LoadLibrary(_T("DLLs.dll"));
+
     if (!hDll)
     {
         MessageBox(NULL, _T("Failed to load DLL"), _T("Error"), MB_ICONERROR);
         return 1;
     }
 
-    // Get function address
     checkSudokuSolution = (LPFN_CHECKSOLUTION)GetProcAddress(hDll, "checkSudokuSolution");
 
     if (!checkSudokuSolution)
@@ -112,78 +113,88 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
         return 1;
     }
 
-    HWND hwnd;               /* This is the handle for our window */
-    MSG messages;            /* Here messages to the application are saved */
-    WNDCLASSEX wincl;        /* Data structure for the windowclass */
+    HWND hwnd;
+    MSG messages;
+    WNDCLASSEX wincl;
 
-    /* The Window structure */
     wincl.hInstance = hThisInstance;
     wincl.lpszClassName = szClassName;
-    wincl.lpfnWndProc = WindowProcedure;      /* This function is called by windows */
-    wincl.style = CS_DBLCLKS;                 /* Catch double-clicks */
+    wincl.lpfnWndProc = WindowProcedure;
+    wincl.style = CS_DBLCLKS;
     wincl.cbSize = sizeof (WNDCLASSEX);
 
-    /* Use default icon and mouse-pointer */
     wincl.hIcon = LoadIcon (NULL, IDI_APPLICATION);
     wincl.hIconSm = LoadIcon (NULL, IDI_APPLICATION);
     wincl.hCursor = LoadCursor (NULL, IDC_ARROW);
-    wincl.lpszMenuName = NULL;                 /* No menu */
-    wincl.cbClsExtra = 0;                      /* No extra bytes after the window class */
-    wincl.cbWndExtra = 0;                      /* structure or the window instance */
-    /* Use Windows's default colour as the background of the window */
+    wincl.lpszMenuName = NULL;
+    wincl.cbClsExtra = 0;
+    wincl.cbWndExtra = 0;
     wincl.hbrBackground = (HBRUSH) COLOR_BACKGROUND;
     wincl.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(ID_ICON));
     wincl.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(ID_ICON));
 
-    /* Register the window class, and if it fails quit the program */
     if (!RegisterClassEx (&wincl))
         return 0;
 
-    /* The class is registered, let's create the program*/
     hwnd = CreateWindowEx (
-               0,                   /* Extended possibilites for variation */
-               szClassName,         /* Classname */
-               _T("JustoBaniulioProjektas_3*3Sudoku"),       /* Title Text */
-               WS_OVERLAPPEDWINDOW, /* default window */
-               CW_USEDEFAULT,       /* Windows decides the position */
-               CW_USEDEFAULT,       /* where the window ends up on the screen */
-               544,                 /* The programs width */
-               375,                 /* and height in pixels */
-               HWND_DESKTOP,        /* The window is a child-window to desktop */
-               hMenu,                /*Menu */
-               hThisInstance,       /* Program Instance handler */
-               NULL                 /* No Window Creation data */
+               0,
+               szClassName,
+               _T("JustoBaniulioProjektas_3*3Sudoku"),
+               WS_OVERLAPPEDWINDOW,
+               CW_USEDEFAULT,
+               CW_USEDEFAULT,
+               544,
+               650,
+               HWND_DESKTOP,
+               hMenu,
+               hThisInstance,
+               NULL
            );
 
-    /* Make the window visible on the screen */
     ShowWindow (hwnd, nCmdShow);
 
-    /* Run the message loop. It will run until GetMessage() returns 0 */
     while (GetMessage (&messages, NULL, 0, 0))
     {
-        /* Translate virtual-key messages into character messages */
         TranslateMessage(&messages);
-        /* Send message to WindowProcedure */
         DispatchMessage(&messages);
     }
 
     FreeLibrary(hDll);
-    /* The program return-value is 0 - The value that PostQuitMessage() gave */
+    if (hBitmapCorrect) DeleteObject(hBitmapCorrect);
+    if (hBitmapIncorrect) DeleteObject(hBitmapIncorrect);
+
     return messages.wParam;
 }
 
-
-/*  This function is called by the Windows function DispatchMessage()  */
-
 LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    switch (message)                  /* handle the messages */
+    switch (message)
     {
     case WM_DESTROY:
-        PostQuitMessage (0);       /* send a WM_QUIT to the message queue */
+        PostQuitMessage (0);
         break;
     case WM_CREATE:
     {
+
+        hBitmapIncorrect = (HBITMAP)LoadImage(hInst, _T("blogas.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+        hBitmapCorrect = (HBITMAP)LoadImage(hInst, _T("geras.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+
+        hwndImageControl = CreateWindow("STATIC", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP,
+                                        10, 200, 300, 300, hwnd, NULL, hInst, NULL);
+
+        if (hBitmapCorrect == NULL)
+        {
+            DWORD dwError = GetLastError();
+            TCHAR szErrMsg[1024];
+            wsprintf(szErrMsg, _T("Error loading BMP file: %d"), dwError);
+            MessageBox(NULL, szErrMsg, _T("Error"), MB_ICONERROR);
+        }
+
+        if (hBitmapCorrect == NULL || hBitmapIncorrect == NULL)
+        {
+            MessageBox(hwnd, _T("Failed to load 'geras.bmp'"), _T("Error"), MB_ICONERROR);
+        }
+
         for (int i = 0; i < 9; i++)
         {
             int x = 10 + (i % 3) * 35;
@@ -197,7 +208,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         }
 
         CreateWindowEx(
-            0, "EDIT", "",
+            0, "EDIT", "sudoku.txt",
             WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
             10, 120, 200, 20,
             hwnd, (HMENU)IDC_FILEPATH_INPUT, hInst, NULL);
@@ -243,12 +254,12 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 {
                     CHAR buffer[2] = {sudoku[row][col], '\0'};
                     SetWindowText(hwndInput, buffer);
-                    EnableWindow(hwndInput, FALSE); // make it read-only if it's pre-filled
+                    EnableWindow(hwndInput, FALSE);
                 }
                 else
                 {
                     SetWindowText(hwndInput, "");
-                    EnableWindow(hwndInput, TRUE); // make it editable if it's empty
+                    EnableWindow(hwndInput, TRUE);
                 }
             }
 
@@ -266,18 +277,22 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             }
 
             BOOL isSolutionCorrect = checkSudokuSolution(sudoku);
-            MessageBox(hwnd, isSolutionCorrect ? _T("Correct Solution!") : _T("Incorrect Solution!"), _T("Solution Check"), MB_OK);
+
+            SendMessage(hwndImageControl, STM_SETIMAGE,
+                        (WPARAM)IMAGE_BITMAP,
+                        (LPARAM)(isSolutionCorrect ? hBitmapCorrect : hBitmapIncorrect));
+
             break;
         }
         case ID_EXIT:
             PostQuitMessage(0);
             break;
         case ID_ABOUT:
-            MessageBox(hwnd, _T("Sudoku is a logic-based, combinatorial number-placement puzzle..."), _T("About Sudoku"), MB_OK);
+            MessageBox(hwnd, _T("Sudoku is a logic-based, combinatorial number-placement puzzle. Rows and columns must not have duplicates."), _T("About Sudoku"), MB_OK);
             break;
         }
     }
-    default:                      /* for messages that we don't deal with */
+    default:
         return DefWindowProc (hwnd, message, wParam, lParam);
     }
 

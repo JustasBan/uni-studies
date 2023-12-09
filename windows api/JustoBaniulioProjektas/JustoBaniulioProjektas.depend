@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1701817629 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\main.cpp
+1702130292 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\main.cpp
 	<tchar.h>
 	<windows.h>
 	"resource.h"
 
-1701818032 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\menu.rc
+1702121747 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\menu.rc
 	"resource.h"
 
-1701818132 c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\resource.h
+1701900557 c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\resource.h
 
