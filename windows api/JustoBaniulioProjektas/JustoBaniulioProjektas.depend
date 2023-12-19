@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1702130292 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\main.cpp
+1702131200 source:c:\users\justas baniulis\desktop\git\uni-studies\windows api\justobaniulioprojektas\main.cpp
 	<tchar.h>
 	<windows.h>
 	"resource.h"

@@ -38,6 +38,10 @@
 			<Add library="comctl32" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="menu.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="resource.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

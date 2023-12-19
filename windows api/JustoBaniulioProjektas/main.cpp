@@ -8,20 +8,20 @@
 #include <windows.h>
 #include "resource.h"
 
-#define IDC_SUDOKU_CELL1 101
-#define IDC_SUDOKU_CELL2 102
-#define IDC_SUDOKU_CELL3 103
-#define IDC_SUDOKU_CELL4 104
-#define IDC_SUDOKU_CELL5 105
-#define IDC_SUDOKU_CELL6 106
-#define IDC_SUDOKU_CELL7 107
-#define IDC_SUDOKU_CELL8 108
-#define IDC_SUDOKU_CELL9 109
+#define ID_SUDOKU_CELL1 101
+#define ID_SUDOKU_CELL2 102
+#define ID_SUDOKU_CELL3 103
+#define ID_SUDOKU_CELL4 104
+#define ID_SUDOKU_CELL5 105
+#define ID_SUDOKU_CELL6 106
+#define ID_SUDOKU_CELL7 107
+#define ID_SUDOKU_CELL8 108
+#define ID_SUDOKU_CELL9 109
 
-#define IDC_IMPORT_BUTTON 110
-#define IDC_FILEPATH_INPUT 111
+#define ID_IMPORT_BUTTON 110
+#define ID_FILEPATH_INPUT 111
 
-#define IDC_CHECK_SOLUTION_BUTTON 112
+#define ID_CHECK_SOLUTION_BUTTON 112
 
 typedef BOOL (*LPFN_CHECKSOLUTION)(TCHAR[3][3]);
 
@@ -175,7 +175,6 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         break;
     case WM_CREATE:
     {
-
         hBitmapIncorrect = (HBITMAP)LoadImage(hInst, _T("blogas.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
         hBitmapCorrect = (HBITMAP)LoadImage(hInst, _T("geras.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
@@ -204,26 +203,26 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 0, "EDIT", "",
                 WS_CHILD | WS_VISIBLE | WS_BORDER | ES_NUMBER | ES_CENTER,
                 x, y, 30, 20,
-                hwnd, (HMENU)(IDC_SUDOKU_CELL1 + i), hInst, NULL);
+                hwnd, (HMENU)(ID_SUDOKU_CELL1 + i), hInst, NULL);
         }
 
         CreateWindowEx(
             0, "EDIT", "sudoku.txt",
             WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
             10, 120, 200, 20,
-            hwnd, (HMENU)IDC_FILEPATH_INPUT, hInst, NULL);
+            hwnd, (HMENU)ID_FILEPATH_INPUT, hInst, NULL);
 
         CreateWindow(
             "BUTTON", "Import Sudoku",
             WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
             220, 120, 100, 20,
-            hwnd, (HMENU)IDC_IMPORT_BUTTON, hInst, NULL);
+            hwnd, (HMENU)ID_IMPORT_BUTTON, hInst, NULL);
 
         CreateWindow(
             "BUTTON", "Check Solution",
             WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
             10, 150, 120, 30,
-            hwnd, (HMENU)IDC_CHECK_SOLUTION_BUTTON, hInst, NULL);
+            hwnd, (HMENU)ID_CHECK_SOLUTION_BUTTON, hInst, NULL);
 
         break;
     }
@@ -231,10 +230,10 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     {
         switch (LOWORD(wParam))
         {
-        case IDC_IMPORT_BUTTON:
+        case ID_IMPORT_BUTTON:
         {
             TCHAR filePath[MAX_PATH];
-            GetDlgItemText(hwnd, IDC_FILEPATH_INPUT, filePath, MAX_PATH);
+            GetDlgItemText(hwnd, ID_FILEPATH_INPUT, filePath, MAX_PATH);
 
             CHAR sudoku[3][3];
             BOOL isRead = readSudokuFromFile(filePath, sudoku);
@@ -249,7 +248,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 int row = i / 3;
                 int col = i % 3;
 
-                HWND hwndInput = GetDlgItem(hwnd, IDC_SUDOKU_CELL1 + i);
+                HWND hwndInput = GetDlgItem(hwnd, ID_SUDOKU_CELL1 + i);
                 if (sudoku[row][col] != 'x' && sudoku[row][col] != '\n' && sudoku[row][col] != '\r')
                 {
                     CHAR buffer[2] = {sudoku[row][col], '\0'};
@@ -265,12 +264,12 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
 
             break;
         }
-        case IDC_CHECK_SOLUTION_BUTTON:
+        case ID_CHECK_SOLUTION_BUTTON:
         {
             CHAR sudoku[3][3];
             for (int i = 0; i < 9; i++)
             {
-                HWND hwndCell = GetDlgItem(hwnd, IDC_SUDOKU_CELL1 + i);
+                HWND hwndCell = GetDlgItem(hwnd, ID_SUDOKU_CELL1 + i);
                 CHAR cellValue[2];
                 GetWindowText(hwndCell, cellValue, 2);
                 sudoku[i / 3][i % 3] = cellValue[0];
