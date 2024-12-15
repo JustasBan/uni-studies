@@ -10,7 +10,7 @@ namespace A11.Scenarijai
         // vykdo scenariju 3 su nurodytais parametrais,
         // kaip generuojanti matrica, stulpeliaiN, eilutesK, klaidosTikimybe
         public void Vykdyti(
-            GeneruojantiMatrica generuojantiMatrica,
+            GeneruojantiMatrica? generuojantiMatrica,
             int stulpeliaiN, int eilutesK,
             double klaidosTikimybe)
         {

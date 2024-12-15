@@ -1,4 +1,5 @@
-﻿using A11.Classes;
+﻿using System.Diagnostics;
+using A11.Classes;
 using A11.Classes.Matricos;
 using A11.Scenarijai;
 
@@ -23,7 +24,7 @@ do {
 Console.WriteLine("1 - generuojant matrica sukriama atsitiktinai\n2 - generuojancia matrica suvedade Jus...");
 var input = Console.ReadLine();
 
-GeneruojantiMatrica generuojantiMatrica = null;
+GeneruojantiMatrica? generuojantiMatrica = null;
 
 switch(input)
 {
@@ -52,6 +53,7 @@ switch(input)
                 eilute = Console.ReadLine();
 
                 // tikrinama ar validus ivestis i console
+                Debug.Assert(eilute != null, nameof(eilute) + " != null");
                 if (eilute.Length != stulpeliaiN)
                 {
                     Console.WriteLine($"Ivesta {eilute.Length} elementu, o turetu buti {stulpeliaiN}. Pakartokite.");

@@ -7,7 +7,7 @@ public class Scenarijus1
 {
     // metodas vykdantis scenariju 1, su vartotojo ivestais parametrais,
     // kaip generuojanti matrica, n, k, klaidos tikimybe
-    public void Vykdyti(GeneruojantiMatrica generuojantiMatrica, int stulpeliaiN, int eilutesK, double klaidosTikimybe)
+    public void Vykdyti(GeneruojantiMatrica? generuojantiMatrica, int stulpeliaiN, int eilutesK, double klaidosTikimybe)
     {
         // vartotojas iveda zinute
         string zinuteInput;

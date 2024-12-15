@@ -16,7 +16,7 @@ public static class Pernaudojama
     // kurie buvo uzkoduoti, neuzkoduoti ir vektoriui uzpildymo nuliais kiekius
     // siuncia vektorius ir grazina iskanalo gautus dekoduotus ir nedekoduotus vektorius
     public static (IEnumerable<int[]>, IEnumerable<int[]>) SiustiKanaluIrDekoduoti(
-        GeneruojantiMatrica generuojantiMatrica, int stulpeliaiN, int eilutesK, double klaidosTikimybe,
+        GeneruojantiMatrica? generuojantiMatrica, int stulpeliaiN, int eilutesK, double klaidosTikimybe,
         IReadOnlyList<int[]> uzkoduotiVektoriai,
         IReadOnlyList<int[]> neUzkoduotiVektoriai,
         IReadOnlyList<int> uzplidymai,
@@ -61,7 +61,7 @@ public static class Pernaudojama
     // grazina uzkoduotus vektorius, neuzkoduotus vektorius ir uzpildymo nuliais kiekius
     // paima generuojancia matrica, vektorius string formatu ir k reiksmes
     public static (List<int[]>, List<int>, List<int[]>) SuskaidytiIrUzkoduoti(
-        Matrica generuojantiMatrica,
+        Matrica? generuojantiMatrica,
         string binaryString, int eilutesK)
     {
         var uzkoduotiVektoriai = new List<int[]>();

@@ -8,7 +8,7 @@ public class Dekodavimas
     // Dekodavimo konsruktorius, kuris priima generuojancia matrica ir n.
     // Paruosia dekodavimui: pagal argumentus gauna kontroline matrica, ja transponuoja, gauna sindromus su svoriais
     // ir inicializuoja dekodavima.
-    public Dekodavimas(GeneruojantiMatrica generuojantiMatrica, int n)
+    public Dekodavimas(GeneruojantiMatrica? generuojantiMatrica, int n)
     {
         this.n = n;
         KontrolineMatrica = new KontrolineMatrica(generuojantiMatrica)
@@ -27,7 +27,7 @@ public class Dekodavimas
     }
 
     private readonly int n;
-    private KontrolineMatrica KontrolineMatrica { get; set; }
+    private KontrolineMatrica? KontrolineMatrica { get; set; }
     private Dictionary<string, int> SindromaiSvoriai { get; set; }
 
     // Pritaiko "Grandininio" dekodavimo algoritma

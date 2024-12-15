@@ -43,7 +43,7 @@ public static class OperacijosMatricos
 
     // priima matrica ir vektoriu.
     // grazina vektoriu, kuris yra matricos ir vektoriaus daugybos rezultatas
-    public static int[] Daugyba(Matrica a, int[] b)
+    public static int[] Daugyba(Matrica? a, int[] b)
     {
         var k = a.EilutesK;
         var n = a.StulpeliaiN;

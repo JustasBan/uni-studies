@@ -4,7 +4,7 @@ public class KontrolineMatrica : Matrica
 {
     // konsruktorius, kuris priima generuojancia matrica
     // ir pagal ja inicializuoja kontroline matrica
-    public KontrolineMatrica(GeneruojantiMatrica generuojantiMatrica)
+    public KontrolineMatrica(GeneruojantiMatrica? generuojantiMatrica)
     {
         // generuojancios matricos desne (ne vienetine) puse.
         // paverciama atskira matrica

@@ -6,7 +6,7 @@ namespace A11.Classes.Sindromai
     {
         // lyderiu lenteles konstruktorius, priima kontroline matrica ir n (ilgi)
         // inicializuoja sindromu ir ju svoriu lentele, reikalinga dekodavimui
-        public LyderiuLentele(KontrolineMatrica kontrolineMatrica, int n)
+        public LyderiuLentele(KontrolineMatrica? kontrolineMatrica, int n)
         {
             this.n = n;
             KontrolineMatrica = kontrolineMatrica;
@@ -16,7 +16,7 @@ namespace A11.Classes.Sindromai
 
         private readonly int n;
         public Dictionary<string, int> SindromaiSvoriai { get; set; }
-        private KontrolineMatrica KontrolineMatrica { get; set; }
+        private KontrolineMatrica? KontrolineMatrica { get; set; }
 
         // generuoja svorius su sindromais,
         // ideda i lentele galimu zinuciu sindromus, kurios turi maziausia svori
